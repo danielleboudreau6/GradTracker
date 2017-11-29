@@ -40,7 +40,7 @@
         </li>
         
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Contact">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="ContactUs.php">
             <i class="fa fa-fw fa-paper-plane-o"></i>
             <span class="nav-link-text">Contact</span>
           </a>
