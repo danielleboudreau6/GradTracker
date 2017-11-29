@@ -4,9 +4,9 @@
 
 $root = dirname($_SERVER['DOCUMENT_ROOT']).'/DBconn';
 
-//echo $root;
+// echo $root;
 
 // Create another constant to represent the final db connection file location
-define('MYSQL',$root.'/2017_mysqli_connect.php');
+define('MYSQL',$root.'/gradtracker_connect.php');
 
 // We are defining MYSQL as the constant for the filepath of the connection file. 
