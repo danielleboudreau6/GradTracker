@@ -20,13 +20,18 @@
     <div class="container-fluid">
         <div class="col-lg-12">
             <?php
-                
+                // these two lines are required anytime you need to connect to the database
+                // 1.  get the configureation file (holds the connection info)
+                require './includes/config.php';
+
+                // 2.  connect to the database
+                require MYSQL;
         
         
         
         
         
-        ?>
+            ?>
             
             
             
