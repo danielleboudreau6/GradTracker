@@ -6,24 +6,29 @@
           </a>
         </li>
        
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Search">
+<!--        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Search">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
-            <i class="fa fa-fw fa-database"></i>
-            <span class="nav-link-text">Search</span>
+            <i class="fa fa-fw fa-table"></i>
+            <span class="nav-link-text">Student Report</span>
           </a>
-          <ul class="sidenav-second-level collapse" id="collapseComponents">
-            <li>
-              <a href="students.php">Student Report</a>
-            </li>
-            <li>
-              <a href="#">Query</a>
-            </li>
-          </ul>
         </li>
         
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Members">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
-            <i class="fa fa-fw fa-new-user"></i>
+            <i class="fa fa-fw fa-user"></i>
+            <span class="nav-link-text">Register</span>
+          </a>
+        </li>-->
+        
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Contact">
+          <a class="nav-link" href="students.php">
+            <i class="fa fa-fw fa-table"></i>
+            <span class="nav-link-text">Student Report</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Contact">
+          <a class="nav-link" href="register.html">
+            <i class="fa fa-fw fa-user"></i>
             <span class="nav-link-text">Register</span>
           </a>
         </li>
