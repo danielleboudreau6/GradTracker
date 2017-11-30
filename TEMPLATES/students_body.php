@@ -27,9 +27,25 @@
                 // 2.  connect to the database
                 require MYSQL;
         
+                $q = "select * from grads";
+                $stmt = $dbc->query($q);
+                // var_dump($stmt);
+                
+                $grad_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                
+                //var_dump($grad_list);
+                
+                echo "<table class='table table-bordered table-striped'>
+                    <thead class='thead-dark'>
+                        <tr>
+                            <th>Name</th>
+                            <th>Grad Year</th>
+                            <th>LinkedIn</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
         
-        
-        
+        echo "</tbody></table>";
         
             ?>
             
