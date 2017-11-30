@@ -1,12 +1,12 @@
   <div class="content-wrapper">
     <div class="container-fluid">
         
-       <ol class="breadcrumb">
+<!--       <ol class="breadcrumb">
         <li class="breadcrumb-item">
           <a href="index.php">Home</a>
         </li>
-        <!--<li class="breadcrumb-item active">Home</li>-->
-       </ol>
+        <li class="breadcrumb-item active">Home</li>
+       </ol>-->
     </div>
   
       
@@ -34,7 +34,7 @@
               </div>
               <div class="mr-5">GRADS</div>
             </div>
-            <a class="card-footer text-white clearfix small z-1" href="#">
+            <a class="card-footer text-white clearfix small z-1" href="students.php">
               <span class="float-left">View our past students</span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
@@ -50,7 +50,7 @@
               </div>
               <div class="mr-5">COMPANIES</div>
             </div>
-            <a class="card-footer text-white clearfix small z-1" href="#">
+            <a class="card-footer text-white clearfix small z-1" href="companies.php">
               <span class="float-left">View the companies that have hired our past students</span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
