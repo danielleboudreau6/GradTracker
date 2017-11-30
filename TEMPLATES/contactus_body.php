@@ -15,6 +15,8 @@
                 </style>
             </head>
             <body>
+                <h2>Contact Us</h2>
+                <hr>
                 <?php
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $reg_errors = array();
@@ -31,16 +33,17 @@
                         $reg_errors['email'] = 'please enter a valid email!';
                     }
 
-                    if (preg_match('/^[A-Z ()!?;\'.-]{2,5000}$/i', $_POST['Message'])) {
-                        $Message = trim($_POST['Message']);
+                    if (preg_match('/^[A-Z ()!?;\'.-]{2,5000}$/i', $_POST['message'])) {
+                        $Message = trim($_POST['message']);
                     } else {
-                        $reg_errors['Message'] = 'Please enter your Message!';
+                        $reg_errors['message'] = 'Please enter your Message!';
                     }
 
                     if (empty($reg_errors)) {
                         //var_dump($_POST);
-                        echo "<p>Thank you! for your submission</p>";
+                        echo "<p>Thank you for your submission!</p>";
                         echo "<p>Go <a href='index.php'>back</a> to Homepage?</p>";
+                        include './includes/footer_section.php';
                         exit();
                     } else {
                         //var_dump($reg_errors);
@@ -57,18 +60,18 @@
 
                     <div class="form-group">
                         <label class="col-form-label" for="formGroupExampleInput">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Example:Samuel">
+                        <input name="name" type="text" class="form-control" id="name" placeholder="Type Name Here">
                     </div>
                     <div class="form-group">
                         <label class="col-form-label" for="formGroupExampleInput2">Email</label>
-                        <input type="text" class="form-control" id="email" placeholder="Example:exam@ple.com">
+                        <input name="email" type="text" class="form-control" id="email" placeholder="Type Email Here">
                     </div>
                     <div class="form-group">
                         <label class="col-form-label" for="formGroupExampleInput2">Message</label>
-                        <input type="text" class="form-control" id="message" placeholder="type youre message here">
+                        <input name="message" type="text" class="form-control" id="message" placeholder="Type Your Message Here">
                     </div>
                     <hr>
-                    <td><input name="submit" type="submit" id="submit" value="Send" /></td>
+                    <td><input name="submit" type="submit" id="submit" value="Send" class="btn btn-info" /></td>
                         <!--cant figure out how to fix submit error's -->
                 </form>
         </div>
