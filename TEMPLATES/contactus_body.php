@@ -79,10 +79,11 @@
                     </div>
                     <div class="form-group">
                         <label class="col-form-label" for="formGroupExampleInput2">Message</label>
-                        <input name="message" type="text" class="form-control" id="message" placeholder="Type Your Message Here">
+<!--                        <input name="message" type="text" class="form-control" id="message" rows="4" placeholder="Type Your Message Here">-->
+                         <textarea name="message" class="form-control" id="message" cols="40" rows="4"placeholder="Type Your Message Here"></textarea>
                     </div>
                     <hr>
-                    <td><input name="submit" type="submit" id="submit" value="Send" class="btn btn-info" /></td>
+                    <td><input name="submit" type="submit" id="submit" value="Send" class="btn btn-block" /></td>
                         <!--cant figure out how to fix submit error's -->
                 </form>
         </div>
