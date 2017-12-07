@@ -5,7 +5,7 @@
         <li class="breadcrumb-item">
           <a href="index.php">Home</a>
         </li>
-        <li class="breadcrumb-item active">Home</li>
+        <li class="breadcrumb-item active">Admin</li>
        </ol>
     </div>
       
