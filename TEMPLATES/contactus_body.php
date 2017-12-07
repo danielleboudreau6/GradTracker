@@ -42,9 +42,20 @@
                     if (empty($reg_errors)) {
                         //var_dump($_POST);
                         echo "<p>Thank you for your submission!</p>";
-                        echo "<p>Go <a href='index.php'>back</a> to Homepage?</p>";
-                        include './includes/footer_section.php';
-                        exit();
+                        include './mail/sendmail.php';
+                        $mail = new sendMail($email, $name, 'Inquiry from GradTracker', $Message, $Message, 'fakegradtrackers@gmail.com', 'GradTracker', 'danielle_boudreau_6@hotmail.com', 'Danielle Boudreau');
+    
+                            $result = $mail->SendMail();
+
+                if ($result){
+                    echo "Your email was successfully sent.";
+                }else{
+                    echo "Your email failed to send.";
+                }
+                echo "<p><a href='index.php'>Back to Home</a></p>";        
+                include './includes/footer_section.php';
+                exit();
+                
                     } else {
                         //var_dump($reg_errors);
                         echo"<ul>";
