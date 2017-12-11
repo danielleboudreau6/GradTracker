@@ -66,7 +66,7 @@ $dbh = new DbHandler();
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
         
-       <?php include 'includes/sidenav_section.php'; ?>
+       <?php include'includes/sidenav_section.php'; ?>
         
       <ul class="navbar-nav sidenav-toggler">
         <li class="nav-item">

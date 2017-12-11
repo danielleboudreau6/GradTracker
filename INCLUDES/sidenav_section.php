@@ -29,7 +29,7 @@
         
 <!--        // SHOW THIS WHEN THEY ARE A GUEST-->
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Register">
-          <a class="nav-link" href="register.html">
+          <a class="nav-link" href="register.php">
             <i class="fa fa-fw fa-user-plus"></i>
             <span class="nav-link-text">Register</span>
           </a>
@@ -37,7 +37,7 @@
         
 <!--        // SHOW THIS IF THEY ARE A USER-->
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Profile">
-          <a class="nav-link" href="register.html">
+          <a class="nav-link" href="profile.php">
             <i class="fa fa-fw fa-user"></i>
             <span class="nav-link-text">Profile</span>
           </a>
@@ -45,7 +45,7 @@
         
 <!--        // SHOW THIS IF THEY ARE AN ADMIN-->
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Admin">
-          <a class="nav-link" href="register.html">
+          <a class="nav-link" href="admin.php">
             <i class="fa fa-fw fa-lock"></i>
             <span class="nav-link-text">Admin</span>
           </a>
