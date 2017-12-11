@@ -20,16 +20,34 @@
           </a>
         </li>-->
         
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Contact">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Report">
           <a class="nav-link" href="students.php">
             <i class="fa fa-fw fa-table"></i>
-            <span class="nav-link-text">Student Report</span>
+            <span class="nav-link-text">Report</span>
           </a>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Contact">
+        
+<!--        // SHOW THIS WHEN THEY ARE A GUEST-->
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Register">
+          <a class="nav-link" href="register.html">
+            <i class="fa fa-fw fa-user-plus"></i>
+            <span class="nav-link-text">Register</span>
+          </a>
+        </li>
+        
+<!--        // SHOW THIS IF THEY ARE A USER-->
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Profile">
           <a class="nav-link" href="register.html">
             <i class="fa fa-fw fa-user"></i>
-            <span class="nav-link-text">Register</span>
+            <span class="nav-link-text">Profile</span>
+          </a>
+        </li>
+        
+<!--        // SHOW THIS IF THEY ARE AN ADMIN-->
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Admin">
+          <a class="nav-link" href="register.html">
+            <i class="fa fa-fw fa-lock"></i>
+            <span class="nav-link-text">Admin</span>
           </a>
         </li>
         
