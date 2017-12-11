@@ -41,7 +41,8 @@ class DbConnect{
      */
     function connect(){
         //1.  Get the connection info
-        require_once dirname($_SERVER['DOCUMENT_ROOT']).'/dbconn/2017_oop_connect.php';
+        require_once dirname($_SERVER['DOCUMENT_ROOT']).'/dbconn/gradtracker_connect.php';
+        
         //2.  Make the connection
         $this->conn = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME,DB_USER,DB_PASSWORD);
                
@@ -50,6 +51,8 @@ class DbConnect{
         
         //4.  Return the connection resource back to calling environment
         return $this->conn;
+        
+        //var_dump();
     }
     
 }//end of class
