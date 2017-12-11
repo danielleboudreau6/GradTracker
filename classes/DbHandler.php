@@ -117,14 +117,14 @@ class DbHandler{
             $active = md5(uniqid(rand(), true));
             //Insert user in database using prepared statement
             //Note:  set date_expires to yesterday (until they activate account)
-            $stmt = $this->conn->prepare("INSERT INTO users(email,pass,first_name,last_name,date_expires,active)
-                                          VALUES(:email, :pass, :fname, :lname, SUBDATE(NOW(), INTERVAL 1 DAY), :active)");
+            $stmt = $this->conn->prepare("INSERT INTO members(email,password,first_name,last_name,active)
+                                          VALUES(:email, :password, :fname, :lname, :active)");
             //Bind parameters
             $stmt->bindValue(':email', $email, PDO::PARAM_STR);
-            $stmt->bindValue(':pass', $password_hash, PDO::PARAM_STR);
+            $stmt->bindValue(':password', $password_hash, PDO::PARAM_STR);
             $stmt->bindValue(':fname', $first_name, PDO::PARAM_STR);
             $stmt->bindValue(':lname', $last_name, PDO::PARAM_STR);
-            $stmt->bindValue(':active', $active, PDO::PARAM_STR);
+           $stmt->bindValue(':active', $active, PDO::PARAM_STR);
             //Execute statement
             $result = $stmt->execute();
             //Prepare array for result
@@ -152,9 +152,109 @@ class DbHandler{
         return $data;
     }
 //End of createUser
+
+    
+    private function isUserExists($email){
+       $stmt=$this->conn->prepare("SELECT COUNT(*)
+                                   FROM members
+                                   WHERE email=:email"); 
+       $stmt->bindValue(':email',$email, PDO::PARAM_STR);
+       $stmt->execute();
+       $num_rows = $stmt->fetchColumn();
+       
+       return $num_rows>0;
+       
+    }
+    
+    
+    public function activateUser($email, $active) {
+    if ($this->isUserExists($email)) {
+        //User exists in database - update table (date_expires and active)      
+        $stmt = $this->conn->prepare("UPDATE members SET active=NULL 
+                                     WHERE email=:email AND active = :active");
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->bindValue(':active', $active, PDO::PARAM_STR);
+        $result = $stmt->execute();
+        $count = $stmt->rowCount();
+        //Check for successfull update
+        if ($count > 0) {
+            //User successfully activated
+            $data = array('error' => false,
+                'message' => 'USER_ACTIVE_SUCCESS');
+        } else {
+            //Failed to activate user
+            $data = array('error' => true,
+                'message' => 'USER_ACTIVE_FAIL');
+        }
+    } else {
+        //Account does not exist in database
+        $data = array('error' => true,
+            'message' => 'USER_ACTIVE_FAIL');
+    }
+    return $data;
 }
-    
-    
+
+
+//End activateUser
+
+
+
+//public function checkLogin($email, $password) {
+//    // fetching user by email
+//    //var_dump($email);
+//    //var_dump($password);
+//    //var_dump(PassHash::hash($password));
+//    //exit();
+//    //1. Check if email exists
+//    $stmt = $this->conn->prepare("SELECT COUNT(*) from users WHERE email = :email");
+//    $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+//    $stmt->execute();
+//    $num_rows = $stmt->fetchColumn();
+//    //var_dump($num_rows);
+//    //exit();
+//    if ($num_rows > 0) {
+//        //2. Actual query
+//        $stmt = $this->conn->prepare("SELECT pass from users WHERE email = :email");
+//        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+//        $stmt->execute();
+//        $row = $stmt->fetch(PDO::FETCH_OBJ);
+//        if (PassHash::check_password($row->pass, $password)) {
+//            // User password is correct
+//            return TRUE;
+//        } else {
+//            // user password is incorrect
+//            return FALSE;
+//        }
+//    } else {
+//        // user not existed with the email
+//        return FALSE;
+//    }
+//}//End checkLogin
+//public function getUserByEmail($email) {
+//    try {
+//        $stmt = $this->conn->prepare("SELECT id, type, email, first_name, last_name, 
+//                                     IF(date_expires>=NOW(),true,false) as notexpired,
+//                                     IF(type='admin',true,false)as admin
+//                                     FROM users WHERE email = :email");
+//        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+//        if ($stmt->execute()) {
+//            $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//            //return $user;
+//            $data = array('error' => false,
+//                'items' => $user);
+//            return $data;
+//        } else {
+//            return NULL;
+//        }
+//    } catch (PDOException $e) {
+//        return NULL;
+//    }
+//}
+
+
+
+    }
+
     
     
 //    public function getArticle($id){
@@ -217,4 +317,4 @@ class DbHandler{
 //    }//end of getArticles
     
      
-}//End of Class
+//End of Class
