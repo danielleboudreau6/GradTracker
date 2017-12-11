@@ -1,3 +1,41 @@
+<?php
+    //start the session
+session_start();
+
+//FOR TESTING:  ADD A FICTIONAL USER
+//$_SESSION['user_id']=1;//pretend user 1 is logged in
+//$_SESSION['user_not_expired']=true; //pretend user account is not expired
+//$_SESSION['admin']=true;  //pretend user is an admin
+
+//var_dump($_SESSION);
+
+ob_start();//turn output buffering on
+
+/* ************************************************************** */
+/* Autoloading Classes
+ * Whenever your code tries to create a new instance of a class
+ * that PHP doesn't know about, PHP automatically calls your 
+ * __autoload() function, passing in the name of the class it's
+ * looking for. Your function's job is to locate and include the 
+ * class file, thereby loading the class. 
+ */
+
+//var_dump($_SESSION);
+
+function __autoload($class) {
+    require_once 'classes/' . $class . '.php';
+}
+
+//instantiate the database handler
+$dbh = new DbHandler();
+//print_r($dbh);
+//exit();  
+
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
