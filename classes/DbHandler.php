@@ -105,6 +105,58 @@ class DbHandler{
         
     }//End of getCompanies
     
+    
+    public function addCompany($company_name){
+        //First check if company already exists in table
+        if(!$this->isCompanyExists($company_name)){
+            //Company does not exist - continue
+
+            // insert a new company to the database
+            
+            $stmt = $this->conn->prepare("insert into companies (company_name)
+                                          values (:company_name)");
+            // bind parameters
+            $stmt->bindValue(':company_name', $company_name, PDO::PARAM_STR);
+//            $stmt->bindValue(':pass', $password_hash, PDO::PARAM_STR);
+//            $stmt->bindValue(':fname', $first_name, PDO::PARAM_STR);
+//            $stmt->bindValue(':lname', $last_name, PDO::PARAM_STR);
+//            $stmt->bindValue(':active', $active, PDO::PARAM_STR);
+            
+            // execute the statement 
+            $result = $stmt->execute();
+            
+            // prepare the array of results
+            if($result) {
+                // success - build success message
+                $data=array(
+                            'error'=>false, 
+                            'message'=>'COMPANY_ADD_SUCCESS'
+                           );
+                
+            }
+            else {
+                // fail - build fail message
+                $data=array(
+                            'error'=>true, 
+                            'message'=>'COMPANY_ADD_FAIL'
+                           );
+            }
+            
+        }
+        else{
+            // company already exists - return error and message
+            $data=array('error'=>true,                
+                        'message'=>'COMPANY_ALREADY_EXISTS'
+            );
+            
+        }
+        
+        //Return one final data array
+        return $data;
+    }//End of addCompany
+    
+    
+    
     // ---------------------------------------------- REGISTER USER ----------------------------------------------
     
         public function createUser($email, $password, $first_name, $last_name) {
@@ -124,7 +176,7 @@ class DbHandler{
             $stmt->bindValue(':password', $password_hash, PDO::PARAM_STR);
             $stmt->bindValue(':fname', $first_name, PDO::PARAM_STR);
             $stmt->bindValue(':lname', $last_name, PDO::PARAM_STR);
-           $stmt->bindValue(':active', $active, PDO::PARAM_STR);
+            $stmt->bindValue(':active', $active, PDO::PARAM_STR);
             //Execute statement
             $result = $stmt->execute();
             //Prepare array for result
@@ -167,6 +219,18 @@ class DbHandler{
     }
     
     
+    private function isCompanyExists($company_name){
+       $stmt=$this->conn->prepare("SELECT COUNT(*)
+                                   FROM companies
+                                   WHERE company_name=:company_name"); 
+       $stmt->bindValue(':company_name',$company_name, PDO::PARAM_STR);
+       $stmt->execute();
+       $num_rows = $stmt->fetchColumn();
+       
+       return $num_rows>0;
+       
+    }
+    
     public function activateUser($email, $active) {
     if ($this->isUserExists($email)) {
         //User exists in database - update table (date_expires and active)      
@@ -193,7 +257,6 @@ class DbHandler{
     }
     return $data;
 }
-
 
 //End activateUser
 
