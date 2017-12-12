@@ -36,13 +36,13 @@ class DbHandler{
     private static function dbConnectError($code){
         switch ($code) {
             case 1045:
-                echo "A database access error has occured!";
+                echo "A database access error has occurred.";
                 break;
             case 2002:
-                echo "A database server error has occured!";
+                echo "A database server error has occurred.";
                 break;            
             default:
-                echo "A server error has occured!";
+                echo "A server error has occurred.";
                 break;
         }//end of swith        
     }//End of dbConnectError function
@@ -79,7 +79,7 @@ class DbHandler{
         //Return data back to calling environment
         return $data;
         
-    }//end of getCategoryList Method
+    }//end of getStudents Method
     
     
     public function getCompanies(){
@@ -103,7 +103,7 @@ class DbHandler{
         //Return data back to calling environment
         return $data;
         
-    }//End of getPopularList
+    }//End of getCompanies
     
     // ---------------------------------------------- REGISTER USER ----------------------------------------------
     
