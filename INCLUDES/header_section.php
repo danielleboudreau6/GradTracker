@@ -96,19 +96,22 @@ $dbh = new DbHandler();
             </div>
           </form>
         </li>
-        
-<!--        // SHOW THIS IF THEY ARE A GUEST-->
-        <li class="nav-item">
-          <a class="nav-link" href="login.html">
-            <i class="fa fa-fw fa-sign-in"></i>Login</a>
-        </li>
-        
-<!--        // SHOW THIS IF THEY ARE A USER/ADMIN AND THEY ARE LOGGED IN -->
-<!--        <li class="nav-item">
+<?php   
+
+if( !empty($_SESSION['user_id']) ){
+    echo '<li class="nav-item">
           <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
             <i class="fa fa-fw fa-sign-out"></i>Logout</a>
-        </li>
--->
+        </li>';
+}else{
+    echo '<li class="nav-item">
+          <a class="nav-link" href="login.html">
+            <i class="fa fa-fw fa-sign-in"></i>Login</a>
+        </li>';
+}
+
+?> 
+        
       </ul>
         
     </div>

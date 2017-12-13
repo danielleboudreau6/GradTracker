@@ -83,7 +83,7 @@
                          <textarea name="message" class="form-control" id="message" cols="40" rows="4"placeholder="Type Your Message Here"></textarea>
                     </div>
                     <hr>
-                    <td><input name="submit" type="submit" id="submit" value="Send" class="btn btn-block" /></td>
+                    <td><input name="submit" type="submit" id="submit" value="Send" class="btn btn-primary btn-block" /></td>
                         <!--cant figure out how to fix submit error's -->
                 </form>
         </div>
