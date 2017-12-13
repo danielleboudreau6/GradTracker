@@ -5,8 +5,11 @@
         <li class="breadcrumb-item">
           <a href="index.php">Home</a>
         </li>
+        <li class="breadcrumb-item">
+            <a href="companies.php">Companies</a>
+        </li>
         <li class="breadcrumb-item active">
-          Companies
+          Add Company
         </li>
         <!--<li class="breadcrumb-item active">Home</li>-->
        </ol>
@@ -24,9 +27,21 @@
         if($_POST) {
             
             $company_name = $_POST['company_name'];
-            $data = $dbh->addCompany($company_name);
+            $address = $_POST['address'];
+            $city = $_POST['city'];
+            $province_state = $_POST['province_state'];
+            $postal = $_POST['postal'];
+            $country_name = $_POST['country_name'];
+            $website = $_POST['website'];
+            $contact_fname = $_POST['contact_fname'];
+            $contact_lname = $_POST['contact_lname'];
+            $contact_phone = $_POST['contact_phone'];
+            $contact_email = $_POST['contact_email'];
             
-            
+            $data = $dbh->addCompany($company_name, $address, $city, $province_state, $postal,
+                                     $country_name, $website, $contact_fname, $contact_lname,
+                                     $contact_email);
+
             //var_dump($data);
             
             if($data['error']==false) {
@@ -42,20 +57,129 @@
             }
             
         }
-            
-        
-        
-        ?>
 
-        <form class="form-inline" method="post" action="addCompany.php">
+        ?>
+            <form name="addCompanyForm" id="addCompanyForm" novalidate method="post">
+                
+                <div class="control-group form-group">
+                    <div class="controls">
+                        
+                        <label for="company_name">Company Name:</label>
+                        <input type="text" class="form-control" 
+                               name="company_name" id="company_name" 
+                               placeholder="Enter the company name"
+                               required data-validation-required-message="Enter the company name.">
+                        <p class="form-text"></p>
+                        
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="address">Address:</label>
+                        <input type="text" class="form-control" 
+                               id="address" name="address" 
+                               placeholder="Enter the address">
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="city">City:</label>
+                        <input type="text" class="form-control" 
+                               id="city" name="city"
+                               placeholder="Enter the city">
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="province_state">Province-State:</label>
+                        <input type="text" class="form-control" 
+                               id="province_state" name="province_state"
+                               placeholder="Enter the province (or city)">
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="postal">Postal:</label>
+                        <input type="text" class="form-control" 
+                               id="postal" name="postal"
+                               placeholder="Enter the postal code (or zip code)">
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="country_name">Country:</label>
+                        <select name="country_name" class="form-control">
+                            <option value="Canada" selected>Canada</option>
+                            <option value="United States">United States</option>
+                            <option value="Italy">Italy</option>
+                            <option value="France">France</option>
+                            <option value="Germany">Germany</option>
+                            <option value="United Kingdom">United Kingdom</option>
+                            <option value="Switzerland">Switzerland</option>
+                        </select>
+                    </div>
+
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="website">Website:</label>
+                        <input type="text" class="form-control" 
+                               id="website" name="website"
+                               placeholder="Enter the website">
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="contact_fname">Contact First Name:</label>
+                        <input type="text" class="form-control" 
+                               id="contact_fname" name="contact_fname"
+                               placeholder="Enter the contact's first name">
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="contact_lname">Contact Last Name:</label>
+                        <input type="text" class="form-control" 
+                               id="contact_lname" name="contact_lname"
+                               placeholder="Enter the contact's last name">
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="contact_phone">Contact Phone:</label>
+                        <input type="tel" class="form-control" 
+                               id="contact_phone" name="contact_phone"
+                               placeholder="Enter the contact's phone">
+                    </div>
+                </div>
+                <div class="control-group form-group">
+                    <div class="controls">
+                        <label for="contact_email">Contact Email:</label>
+                        <input type="email" class="form-control" 
+                               id="contact_email" name="contact_email"
+                               placeholder="Enter the contact's email">
+                    </div>
+                </div>
+
+                <div id="success"></div>
+                <!-- For success/fail messages -->
+                <button type="submit" class="btn btn-primary" id="addCompanyButton">Add Company</button>
+                
+            </form>
+<!--        <form class="form-inline" method="post" action="addCompany.php">
             <div class="form-group mx-sm-3">
                 <label for="company_name" class="sr-only">Company</label>
                 <input type="text" class="form-control" 
                        id="company_name" name="company_name" 
                        placeholder="Enter new company">
+                
+                <label for="address" class="sr-only">Address</label>
+                <input type="text" class="form-control" 
+                       id="address" name="address" 
+                       placeholder="Enter address">
             </div>
+
             <button type="submit" class="btn btn-primary">Add Company</button>
-        </form>
+        </form>-->
 
         
 

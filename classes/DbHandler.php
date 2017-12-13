@@ -258,9 +258,66 @@ class DbHandler{
     return $data;
 }
 
+
 //End activateUser
 
-
+public function checkLogin($email,$password){
+        // check if email is in the database
+        if($this->isUserExists($email)){
+            // email exists, now check the email password combination
+            $stmt=$this->conn->prepare("SELECT pass 
+                                        FROM users 
+                                        WHERE email =:email");
+            $stmt->bindValue(':email',$email,PDO::PARAM_STR);
+            $stmt->execute();
+            
+            // fetch record as pdo object
+            $row = $stmt->fetch(PDO::FETCH_OBJ);
+            
+            //check hash against form password
+            if(PassHash::check_password($row->pass,$password)){
+                // password is a match
+                return true;
+            }else{
+                return false;
+            }
+            
+        }else{
+            // email was not found
+            return false;
+        }
+        
+        
+        
+    }
+    
+    public function getUserByEmail($email){
+        // retrieve all info by user
+        // should use try catch when going to database 
+        try{
+            $stmt=$this->conn->prepare("SELECT id, type, email, first_name, last_name, 
+                                         IF(date_expires<=NOW(),true,false) as expired,
+                                         IF(type='admin',true,false) as admin
+                                         FROM users
+                                         WHERE email=:email");
+            $stmt->bindValue(':email',$email,PDO::PARAM_STR);
+            if($stmt->execute()){
+                $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $data = array(
+                    'error'=>false,
+                    'items'=>$user
+                );
+                return $data;
+            }else{
+                return null;
+            }            
+            
+        }catch(PDOException $ex){
+            return null;
+        }
+        
+        
+    }
 
 //public function checkLogin($email, $password) {
 //    // fetching user by email
@@ -293,6 +350,7 @@ class DbHandler{
 //        return FALSE;
 //    }
 //}//End checkLogin
+//
 //public function getUserByEmail($email) {
 //    try {
 //        $stmt = $this->conn->prepare("SELECT id, type, email, first_name, last_name, 
@@ -313,10 +371,10 @@ class DbHandler{
 //        return NULL;
 //    }
 //}
-
-
-
-    }
+//
+//
+//
+//    }
 
     
     
