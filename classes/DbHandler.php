@@ -36,13 +36,13 @@ class DbHandler{
     private static function dbConnectError($code){
         switch ($code) {
             case 1045:
-                echo "A database access error has occured!";
+                echo "A database access error has occurred.";
                 break;
             case 2002:
-                echo "A database server error has occured!";
+                echo "A database server error has occurred.";
                 break;            
             default:
-                echo "A server error has occured!";
+                echo "A server error has occurred.";
                 break;
         }//end of swith        
     }//End of dbConnectError function
@@ -79,7 +79,7 @@ class DbHandler{
         //Return data back to calling environment
         return $data;
         
-    }//end of getCategoryList Method
+    }//end of getStudents Method
     
     
     public function getCompanies(){
@@ -103,7 +103,59 @@ class DbHandler{
         //Return data back to calling environment
         return $data;
         
-    }//End of getPopularList
+    }//End of getCompanies
+    
+    
+    public function addCompany($company_name){
+        //First check if company already exists in table
+        if(!$this->isCompanyExists($company_name)){
+            //Company does not exist - continue
+
+            // insert a new company to the database
+            
+            $stmt = $this->conn->prepare("insert into companies (company_name)
+                                          values (:company_name)");
+            // bind parameters
+            $stmt->bindValue(':company_name', $company_name, PDO::PARAM_STR);
+//            $stmt->bindValue(':pass', $password_hash, PDO::PARAM_STR);
+//            $stmt->bindValue(':fname', $first_name, PDO::PARAM_STR);
+//            $stmt->bindValue(':lname', $last_name, PDO::PARAM_STR);
+//            $stmt->bindValue(':active', $active, PDO::PARAM_STR);
+            
+            // execute the statement 
+            $result = $stmt->execute();
+            
+            // prepare the array of results
+            if($result) {
+                // success - build success message
+                $data=array(
+                            'error'=>false, 
+                            'message'=>'COMPANY_ADD_SUCCESS'
+                           );
+                
+            }
+            else {
+                // fail - build fail message
+                $data=array(
+                            'error'=>true, 
+                            'message'=>'COMPANY_ADD_FAIL'
+                           );
+            }
+            
+        }
+        else{
+            // company already exists - return error and message
+            $data=array('error'=>true,                
+                        'message'=>'COMPANY_ALREADY_EXISTS'
+            );
+            
+        }
+        
+        //Return one final data array
+        return $data;
+    }//End of addCompany
+    
+    
     
     // ---------------------------------------------- REGISTER USER ----------------------------------------------
     
@@ -124,7 +176,7 @@ class DbHandler{
             $stmt->bindValue(':password', $password_hash, PDO::PARAM_STR);
             $stmt->bindValue(':fname', $first_name, PDO::PARAM_STR);
             $stmt->bindValue(':lname', $last_name, PDO::PARAM_STR);
-           $stmt->bindValue(':active', $active, PDO::PARAM_STR);
+            $stmt->bindValue(':active', $active, PDO::PARAM_STR);
             //Execute statement
             $result = $stmt->execute();
             //Prepare array for result
@@ -167,6 +219,18 @@ class DbHandler{
     }
     
     
+    private function isCompanyExists($company_name){
+       $stmt=$this->conn->prepare("SELECT COUNT(*)
+                                   FROM companies
+                                   WHERE company_name=:company_name"); 
+       $stmt->bindValue(':company_name',$company_name, PDO::PARAM_STR);
+       $stmt->execute();
+       $num_rows = $stmt->fetchColumn();
+       
+       return $num_rows>0;
+       
+    }
+    
     public function activateUser($email, $active) {
     if ($this->isUserExists($email)) {
         //User exists in database - update table (date_expires and active)      
@@ -197,7 +261,63 @@ class DbHandler{
 
 //End activateUser
 
-
+public function checkLogin($email,$password){
+        // check if email is in the database
+        if($this->isUserExists($email)){
+            // email exists, now check the email password combination
+            $stmt=$this->conn->prepare("SELECT pass 
+                                        FROM users 
+                                        WHERE email =:email");
+            $stmt->bindValue(':email',$email,PDO::PARAM_STR);
+            $stmt->execute();
+            
+            // fetch record as pdo object
+            $row = $stmt->fetch(PDO::FETCH_OBJ);
+            
+            //check hash against form password
+            if(PassHash::check_password($row->pass,$password)){
+                // password is a match
+                return true;
+            }else{
+                return false;
+            }
+            
+        }else{
+            // email was not found
+            return false;
+        }
+        
+        
+        
+    }
+    
+    public function getUserByEmail($email){
+        // retrieve all info by user
+        // should use try catch when going to database 
+        try{
+            $stmt=$this->conn->prepare("SELECT id, type, email, first_name, last_name, 
+                                         IF(date_expires<=NOW(),true,false) as expired,
+                                         IF(type='admin',true,false) as admin
+                                         FROM users
+                                         WHERE email=:email");
+            $stmt->bindValue(':email',$email,PDO::PARAM_STR);
+            if($stmt->execute()){
+                $user = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $data = array(
+                    'error'=>false,
+                    'items'=>$user
+                );
+                return $data;
+            }else{
+                return null;
+            }            
+            
+        }catch(PDOException $ex){
+            return null;
+        }
+        
+        
+    }
 
 //public function checkLogin($email, $password) {
 //    // fetching user by email
@@ -230,6 +350,7 @@ class DbHandler{
 //        return FALSE;
 //    }
 //}//End checkLogin
+//
 //public function getUserByEmail($email) {
 //    try {
 //        $stmt = $this->conn->prepare("SELECT id, type, email, first_name, last_name, 
@@ -250,10 +371,10 @@ class DbHandler{
 //        return NULL;
 //    }
 //}
-
-
-
-    }
+//
+//
+//
+//    }
 
     
     

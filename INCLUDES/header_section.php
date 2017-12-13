@@ -54,6 +54,11 @@ $dbh = new DbHandler();
   <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.css" rel="stylesheet">
+  <!--favicon--> 
+  <link rel="icon" type="image/png" href="img/favicon/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="img/favicon/favicon-16x16.png" sizes="16x16" />
+
+
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
