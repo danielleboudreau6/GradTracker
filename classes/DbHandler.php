@@ -437,5 +437,5 @@ public function checkLogin($email,$password){
 //        
 //    }//end of getArticles
     
-     
+}
 //End of Class

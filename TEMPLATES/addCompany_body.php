@@ -42,7 +42,8 @@
                                      $country_name, $website, $contact_fname, $contact_lname,
                                      $contact_email);
 
-            //var_dump($data);
+            var_dump($data);
+            
             
             if($data['error']==false) {
                 // it worked
