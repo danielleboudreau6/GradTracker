@@ -6,7 +6,7 @@
           <a href="index.php">Home</a>
         </li>
         <li class="breadcrumb-item active">
-          Students
+          Companies
         </li>
         <!--<li class="breadcrumb-item active">Home</li>-->
        </ol>

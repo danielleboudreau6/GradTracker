@@ -127,7 +127,12 @@ $dbh = new DbHandler();
                 $result = $mail->SendMail();
                 if ($result) {
                     // MAIL SUCCESS: show html message
-                    echo '<div class="alert alert-success"><strong>Account Registered</strong>
+                    echo '<body class="bg-dark">
+                            <div class="container">
+                              <div class="card card-register mx-auto mt-5">
+                                <div class="card-header">Account Registration</div>
+                                <div class="card-body">
+                                <div class="alert alert-success"><strong>Account Registered</strong>
                                 <p>A confirmation email has been sent to your email address.  
                                     Please click on the link in that email in order to activate 
                                     your account.
@@ -135,7 +140,12 @@ $dbh = new DbHandler();
                               </div>';
                 } else {
                     //MAIL ERROR
-                    echo '<div class="alert alert-success"><strong>Account Registered</strong>
+                    echo '<body class="bg-dark">
+                            <div class="container">
+                              <div class="card card-register mx-auto mt-5">
+                                <div class="card-header">Account Registration</div>
+                                <div class="card-body">
+                                <div class="alert alert-success"><strong>Account Registered</strong>
                                 <p>Warning:  There was a problem sending a confirmation email to the following email: <strong>' .
                     $email . '</strong>.</p> <p>Please contact customer support!</p>                                 
                               </div>';

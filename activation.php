@@ -20,14 +20,7 @@
 <body class="bg-dark">
   <div class="container">
     <div class="card card-register mx-auto mt-5">
-        
-        
-        
-        
-
-        
-        
-        
+      
       <div class="card-header">Account Activation</div>
       <div class="card-body">
 <!--        <form action="register.php" method="post">
