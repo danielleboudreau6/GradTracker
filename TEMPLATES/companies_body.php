@@ -18,6 +18,13 @@
       <!-- Icon Cards-->
       
     <div class="container-fluid">
+        <div class="row">
+        <div class="col-lg-3 mx-auto mb-3">
+            <a class="btn btn-primary btn-block" href="addCompany.php">Add a Company</a>
+        </div> 
+            <div class="col-lg-3 mx-auto mb-3">
+               <a class="btn btn-primary btn-block" href="editCompany.php">Edit a Company</a> 
+            </div>
         <div class="col-lg-12">
             <?php
             
@@ -90,10 +97,10 @@
         
             ?>
             
+        </div>    
             
             
-            
-            
-        </div>
+           
+        </div> 
     </div>
   </div>

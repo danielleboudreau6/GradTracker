@@ -31,18 +31,17 @@
             $city = $_POST['city'];
             $province_state = $_POST['province_state'];
             $postal = $_POST['postal'];
-            $country_name = $_POST['country_name'];
+            $country_id = $_POST['country_id'];
             $website = $_POST['website'];
             $contact_fname = $_POST['contact_fname'];
             $contact_lname = $_POST['contact_lname'];
             $contact_phone = $_POST['contact_phone'];
             $contact_email = $_POST['contact_email'];
             
-            $data = $dbh->addCompany($company_name, $address, $city, $province_state, $postal,
-                                     $country_name, $website, $contact_fname, $contact_lname,
-                                     $contact_email);
+            $data = $dbh->addCompany($company_name,$address,$city,$province_state,$postal,$country_id,
+                                     $website,$contact_fname,$contact_lname,$contact_phone,$contact_email);
 
-            var_dump($data);
+            //var_dump($data);
             
             
             if($data['error']==false) {
@@ -61,7 +60,6 @@
 
         ?>
             <form name="addCompanyForm" id="addCompanyForm" novalidate method="post">
-                
                 <div class="control-group form-group">
                     <div class="controls">
                         
@@ -71,7 +69,6 @@
                                placeholder="Enter the company name"
                                required data-validation-required-message="Enter the company name.">
                         <p class="form-text"></p>
-                        
                     </div>
                 </div>
                 <div class="control-group form-group">
@@ -108,18 +105,19 @@
                 </div>
                 <div class="control-group form-group">
                     <div class="controls">
-                        <label for="country_name">Country:</label>
-                        <select name="country_name" class="form-control">
-                            <option value="Canada" selected>Canada</option>
-                            <option value="United States">United States</option>
-                            <option value="Italy">Italy</option>
-                            <option value="France">France</option>
-                            <option value="Germany">Germany</option>
-                            <option value="United Kingdom">United Kingdom</option>
-                            <option value="Switzerland">Switzerland</option>
+                        <label for="country_id">Country:</label>
+                        <select name="country_id" id="country_id" class="form-control">
+                            <option value="1" selected>Canada</option>
+                            <option value="2">United States</option>
+                            <option value="3">Mexico</option>
+                            <option value="4">Italy</option>
+                            <option value="5">France</option>
+                            <option value="6">Germany</option>
+                            <option value="7">United Kingdom</option>
+                            <option value="8">Switzerland</option>
+                            <option value="9">India</option>
                         </select>
                     </div>
-
                 <div class="control-group form-group">
                     <div class="controls">
                         <label for="website">Website:</label>
@@ -166,21 +164,6 @@
                 <button type="submit" class="btn btn-primary" id="addCompanyButton">Add Company</button>
                 
             </form>
-<!--        <form class="form-inline" method="post" action="addCompany.php">
-            <div class="form-group mx-sm-3">
-                <label for="company_name" class="sr-only">Company</label>
-                <input type="text" class="form-control" 
-                       id="company_name" name="company_name" 
-                       placeholder="Enter new company">
-                
-                <label for="address" class="sr-only">Address</label>
-                <input type="text" class="form-control" 
-                       id="address" name="address" 
-                       placeholder="Enter address">
-            </div>
-
-            <button type="submit" class="btn btn-primary">Add Company</button>
-        </form>-->
 
         
 

@@ -106,21 +106,29 @@ class DbHandler{
     }//End of getCompanies
     
     
-    public function addCompany($company_name){
+    public function addCompany($company_name,$address,$city,$province_state,$postal,$country_id,$website,$contact_fname,$contact_lname,$contact_phone,$contact_email){
         //First check if company already exists in table
         if(!$this->isCompanyExists($company_name)){
             //Company does not exist - continue
 
             // insert a new company to the database
             
-            $stmt = $this->conn->prepare("insert into companies (company_name)
-                                          values (:company_name)");
+            $stmt = $this->conn->prepare("insert into companies (company_name, address, city, province_state, postal,
+                                          country_id,website, contact_fname, contact_lname, contact_phone, contact_email)
+                                          values (:company_name, :address, :city, :province_state, :postal, :country_id,
+                                          :website, :contact_fname, :contact_lname, :contact_phone, :contact_email)");
             // bind parameters
             $stmt->bindValue(':company_name', $company_name, PDO::PARAM_STR);
-//            $stmt->bindValue(':pass', $password_hash, PDO::PARAM_STR);
-//            $stmt->bindValue(':fname', $first_name, PDO::PARAM_STR);
-//            $stmt->bindValue(':lname', $last_name, PDO::PARAM_STR);
-//            $stmt->bindValue(':active', $active, PDO::PARAM_STR);
+            $stmt->bindValue(':address', $address, PDO::PARAM_STR);
+            $stmt->bindValue(':city', $city, PDO::PARAM_STR);
+            $stmt->bindValue(':province_state', $province_state, PDO::PARAM_STR);
+            $stmt->bindValue(':postal', $postal, PDO::PARAM_STR);
+            $stmt->bindValue(':country_id', $country_id, PDO::PARAM_STR);
+            $stmt->bindValue(':website', $website, PDO::PARAM_STR);
+            $stmt->bindValue(':contact_fname', $contact_fname, PDO::PARAM_STR);
+            $stmt->bindValue(':contact_lname', $contact_lname, PDO::PARAM_STR);
+            $stmt->bindValue(':contact_phone', $contact_phone, PDO::PARAM_STR);
+            $stmt->bindValue(':contact_email', $contact_email, PDO::PARAM_STR);
             
             // execute the statement 
             $result = $stmt->execute();
