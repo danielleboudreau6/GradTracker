@@ -58,11 +58,18 @@
             }
             
             ?>
+        <?php
         
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Contact">
-          <a class="nav-link" href="ContactUs.php">
-            <i class="fa fa-fw fa-paper-plane-o"></i>
-            <span class="nav-link-text">Contact</span>
-          </a>
-        </li>
-      </ul>
+        if( !empty($_SESSION['member_id']) && $_SESSION['admin']){
+            echo "</ul>";
+        }else{
+            echo '<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Contact">
+                    <a class="nav-link" href="ContactUs.php">
+                      <i class="fa fa-fw fa-paper-plane-o"></i>
+                      <span class="nav-link-text">Contact</span>
+                    </a>
+                  </li>
+                </ul>';
+        }
+        
+        
