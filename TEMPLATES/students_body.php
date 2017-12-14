@@ -18,6 +18,13 @@
       <!-- Icon Cards-->
       
     <div class="container-fluid">
+        <div class="row">
+        <div class="col-lg-3 mx-auto mb-3">
+            <a class="btn btn-primary btn-block" href="addStudent.php">Add a Student</a>
+        </div> 
+        <div class="col-lg-3 mx-auto mb-3">
+            <a class="btn btn-primary btn-block" href="editStudent.php">Edit a Student</a> 
+        </div>
         <div class="col-lg-12">
             <?php
                 $data = $dbh->getStudents();
@@ -33,6 +40,7 @@
                             <th>Grad Year</th>
                             <th>Company</th>
                             <th>Title</th>
+                            <th>Start Date</th>
                         </tr>
                     </thead>
                     <tbody>";
@@ -43,6 +51,7 @@
                                 <td>{$row['Grad Year']}</td>
                                 <td>{$row['Company']}</td>
                                 <td>{$row['Title']}</td>
+                                <td>{$row['Start Date']}</td>
                               </tr>";
                     
                     }
@@ -57,7 +66,7 @@
             
             
             
-            
+        </div>   
         </div>
     </div>
   </div>

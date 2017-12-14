@@ -56,11 +56,12 @@ class DbHandler{
     // ---------------------------------------------- DATABASE QUERIES ----------------------------------------------
     
     public function getStudents(){
-        $sql = "select concat(fname, ' ', lname) as Name, gradyear as 'Grad Year', company_name as 'Company', title_name as Title
+        $sql = "select concat(fname, ' ', lname) as Name, gradyear as 'Grad Year', company_name as 'Company', title_name as Title, 
+                      date_format(start_date,'%Y-%m') as 'Start Date'
                       from grads join employment on grads.grad_id = employment.grad_id
                       join companies on employment.company_id = companies.company_id
                       join titles on employment.title_id = titles.title_id
-                      order by gradyear desc, name;";
+                      order by gradyear desc, name, start_date desc;";
         try{
             $stmt = $this->conn->query($sql);
             $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -105,6 +106,33 @@ class DbHandler{
         
     }//End of getCompanies
     
+    public function getEmployment(){
+        $sql="select concat(fname, ' ', lname) as 'Name', companies.company_name as Company, titles.title_name as Title, linkedin as LinkedIn, 
+              date_format(start_date,'%Y-%m') as 'Start Date'
+              from grads join employment on grads.grad_id = employment.grad_id
+              join companies on companies.company_id = employment.company_id
+              join titles on employment.title_id = titles.title_id
+              order by lname, fname, start_date desc";
+        
+        try{
+            $stmt = $this->conn->query($sql);
+            $sql = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            //Create an array to hold success|failure
+            //data|message
+            $data = array('error'=>false,
+                          'items'=>$sql
+                         );
+            
+        } catch (PDOException $ex) {
+            $data = array('error'=>true,
+                          'message'=>$ex->getMessage()
+                         );
+        }//end of try catch
+        
+        //Return data back to calling environment
+        return $data;
+        
+    }//End of getCompanies
     
     public function addCompany($company_name,$address,$city,$province_state,$postal,$country_id,$website,$contact_fname,$contact_lname,$contact_phone,$contact_email){
         //First check if company already exists in table
@@ -162,6 +190,105 @@ class DbHandler{
         //Return one final data array
         return $data;
     }//End of addCompany
+    
+    public function addStudent($fname,$lname,$email,$linkedin,$student_id,$program_id,$gradyear){
+        //First check if company already exists in table
+        if(!$this->isStudentExists($student_id)){
+            // student does not exist - continue
+
+            // insert a new student to the database
+            
+            $stmt = $this->conn->prepare("insert into grads (fname, lname, email, linkedin, student_id,
+                                          program_id, gradyear)
+                                          values (:fname, :lname, :email, :linkedin, :student_id, :program_id,
+                                          :gradyear)");
+            // bind parameters
+            $stmt->bindValue(':fname', $fname, PDO::PARAM_STR);
+            $stmt->bindValue(':lname', $lname, PDO::PARAM_STR);
+            $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+            $stmt->bindValue(':linkedin', $linkedin, PDO::PARAM_STR);
+            $stmt->bindValue(':student_id', $student_id, PDO::PARAM_STR);
+            $stmt->bindValue(':program_id', $program_id, PDO::PARAM_STR);
+            $stmt->bindValue(':gradyear', $gradyear, PDO::PARAM_STR);
+            
+            // execute the statement 
+            $result = $stmt->execute();
+            
+            // prepare the array of results
+            if($result) {
+                // success - build success message
+                $data=array(
+                            'error'=>false, 
+                            'message'=>'STUDENT_ADD_SUCCESS'
+                           );
+                
+            }
+            else {
+                // fail - build fail message
+                $data=array(
+                            'error'=>true, 
+                            'message'=>'STUDENT_ADD_FAIL'
+                           );
+            }
+            
+        }
+        else{
+            // company already exists - return error and message
+            $data=array('error'=>true,                
+                        'message'=>'STUDENT_ALREADY_EXISTS'
+            );
+            
+        }
+        
+        //Return one final data array
+        return $data;
+    }//End of addStudent
+    
+    public function addTitle($title_name){
+        //First check if the title already exists in table
+        if(!$this->isTitleExists($title_name)){
+            // title does not exist - continue
+
+            // insert a new title to the database
+            
+            $stmt = $this->conn->prepare("insert into titles (title_name)
+                                          values (:title_name)");
+            // bind parameters
+            $stmt->bindValue(':title_name', $title_name, PDO::PARAM_STR);
+
+            // execute the statement 
+            $result = $stmt->execute();
+            
+            // prepare the array of results
+            if($result) {
+                // success - build success message
+                $data=array(
+                            'error'=>false, 
+                            'message'=>'TITLE_ADD_SUCCESS'
+                           );
+                
+            }
+            else {
+                // fail - build fail message
+                $data=array(
+                            'error'=>true, 
+                            'message'=>'TITLE_ADD_FAIL'
+                           );
+            }
+            
+        }
+        else{
+            // company already exists - return error and message
+            $data=array('error'=>true,                
+                        'message'=>'TITLE_ALREADY_EXISTS'
+            );
+            
+        }
+        
+        //Return one final data array
+        return $data;
+    }//End of addTitle
+    
     
     
     
@@ -239,6 +366,30 @@ class DbHandler{
        
     }
     
+    private function isStudentExists($student_id){
+       $stmt=$this->conn->prepare("SELECT COUNT(*)
+                                   FROM grads
+                                   WHERE student_id=:student_id"); 
+       $stmt->bindValue(':student_id',$student_id, PDO::PARAM_STR);
+       $stmt->execute();
+       $num_rows = $stmt->fetchColumn();
+       
+       return $num_rows>0;
+       
+    }
+    
+    private function isTitleExists($title_name){
+       $stmt=$this->conn->prepare("SELECT COUNT(*)
+                                   FROM titles
+                                   WHERE title_name=:title_name"); 
+       $stmt->bindValue(':title_name',$title_name, PDO::PARAM_STR);
+       $stmt->execute();
+       $num_rows = $stmt->fetchColumn();
+       
+       return $num_rows>0;
+       
+    }
+    
     public function activateUser($email, $active) {
     if ($this->isUserExists($email)) {
         //User exists in database - update table (date_expires and active)      
@@ -275,7 +426,7 @@ public function checkLogin($email,$password){
             // email exists, now check the email password combination
             $stmt=$this->conn->prepare("SELECT pass 
                                         FROM users 
-                                        WHERE email =:email");
+                                        WHERE email =:email AND active = NULL");
             $stmt->bindValue(':email',$email,PDO::PARAM_STR);
             $stmt->execute();
             

@@ -59,6 +59,9 @@
         }
 
         ?>
+        
+        <div class="row">
+        <div class="col-lg-6">
             <form name="addCompanyForm" id="addCompanyForm" novalidate method="post">
                 <div class="control-group form-group">
                     <div class="controls">
@@ -118,53 +121,57 @@
                             <option value="9">India</option>
                         </select>
                     </div>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label for="website">Website:</label>
-                        <input type="text" class="form-control" 
-                               id="website" name="website"
-                               placeholder="Enter the website">
-                    </div>
                 </div>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label for="contact_fname">Contact First Name:</label>
-                        <input type="text" class="form-control" 
-                               id="contact_fname" name="contact_fname"
-                               placeholder="Enter the contact's first name">
-                    </div>
                 </div>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label for="contact_lname">Contact Last Name:</label>
-                        <input type="text" class="form-control" 
-                               id="contact_lname" name="contact_lname"
-                               placeholder="Enter the contact's last name">
-                    </div>
+        <div class="col-lg-6">
+            <div class="control-group form-group">
+                <div class="controls">
+                    <label for="website">Website:</label>
+                    <input type="text" class="form-control" 
+                           id="website" name="website"
+                           placeholder="Enter the website">
                 </div>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label for="contact_phone">Contact Phone:</label>
-                        <input type="tel" class="form-control" 
-                               id="contact_phone" name="contact_phone"
-                               placeholder="Enter the contact's phone">
-                    </div>
+            </div>
+            <div class="control-group form-group">
+                <div class="controls">
+                    <label for="contact_fname">Contact First Name:</label>
+                    <input type="text" class="form-control" 
+                           id="contact_fname" name="contact_fname"
+                           placeholder="Enter the contact's first name">
                 </div>
-                <div class="control-group form-group">
-                    <div class="controls">
-                        <label for="contact_email">Contact Email:</label>
-                        <input type="email" class="form-control" 
-                               id="contact_email" name="contact_email"
-                               placeholder="Enter the contact's email">
-                    </div>
+            </div>
+            <div class="control-group form-group">
+                <div class="controls">
+                    <label for="contact_lname">Contact Last Name:</label>
+                    <input type="text" class="form-control" 
+                           id="contact_lname" name="contact_lname"
+                           placeholder="Enter the contact's last name">
                 </div>
-
+            </div>
+            <div class="control-group form-group">
+                <div class="controls">
+                    <label for="contact_phone">Contact Phone:</label>
+                    <input type="tel" class="form-control" 
+                           id="contact_phone" name="contact_phone"
+                           placeholder="Enter the contact's phone">
+                </div>
+            </div>
+            <div class="control-group form-group">
+                <div class="controls">
+                    <label for="contact_email">Contact Email:</label>
+                    <input type="email" class="form-control" 
+                           id="contact_email" name="contact_email"
+                           placeholder="Enter the contact's email">
+                </div>
+            </div>
+        </div>
                 <div id="success"></div>
                 <!-- For success/fail messages -->
                 <button type="submit" class="btn btn-primary" id="addCompanyButton">Add Company</button>
                 
             </form>
 
+        </div>
         
 
     </div>

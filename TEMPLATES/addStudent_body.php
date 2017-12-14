@@ -36,8 +36,8 @@
             $gradyear = $_POST['gradyear'];
             
             
-            $data = $dbh->addStudent($fname,$lname,$email,$linkedin,$student_id,$program_id,
-                                     $gradyear);
+            $data = $dbh->addStudent($fname, $lname, $email, $linkedin, $student_id,
+                                     $program_id, $gradyear);
 
             var_dump($data);
             
@@ -111,6 +111,7 @@
                             <option value="2">System Management and Cyber Security</option>
                         </select>
                     </div>
+                </div>
                 <div class="control-group form-group">
                     <div class="controls">
                         <label for="gradyear">Grad Year:</label>
@@ -119,12 +120,10 @@
                                placeholder="Enter the grad year">
                     </div>
                 </div>
-                
-                
 
                 <div id="success"></div>
                 <!-- For success/fail messages -->
-                <button type="submit" class="btn btn-primary" id="addCompanyButton">Add Student</button>
+                <button type="submit" class="btn btn-primary" id="addStudentButton">Add Student</button>
                 
             </form>
 
