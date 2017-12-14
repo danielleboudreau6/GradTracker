@@ -33,7 +33,7 @@
                 // var_dump($grad_query);
                 if($data['error']==false) {
                     $students = $data['items'];
-                    echo "<table class='table table-bordered table-striped'>
+                    echo "<table class='table table-bordered table-striped article-table'>
                     <thead class='thead-inverse'>
                         <tr>
                             <th>Name</th>
