@@ -424,9 +424,9 @@ public function checkLogin($email,$password){
         // check if email is in the database
         if($this->isUserExists($email)){
             // email exists, now check the email password combination
-            $stmt=$this->conn->prepare("SELECT pass 
-                                        FROM users 
-                                        WHERE email =:email AND active = NULL");
+            $stmt=$this->conn->prepare("SELECT password 
+                                        FROM members 
+                                        WHERE email =:email AND active IS NULL");
             $stmt->bindValue(':email',$email,PDO::PARAM_STR);
             $stmt->execute();
             
@@ -434,7 +434,7 @@ public function checkLogin($email,$password){
             $row = $stmt->fetch(PDO::FETCH_OBJ);
             
             //check hash against form password
-            if(PassHash::check_password($row->pass,$password)){
+            if(PassHash::check_password($row->password,$password)){
                 // password is a match
                 return true;
             }else{
@@ -454,10 +454,8 @@ public function checkLogin($email,$password){
         // retrieve all info by user
         // should use try catch when going to database 
         try{
-            $stmt=$this->conn->prepare("SELECT id, type, email, first_name, last_name, 
-                                         IF(date_expires<=NOW(),true,false) as expired,
-                                         IF(type='admin',true,false) as admin
-                                         FROM users
+            $stmt=$this->conn->prepare("SELECT member_id, email, password, first_name, last_name, type
+                                         FROM members
                                          WHERE email=:email");
             $stmt->bindValue(':email',$email,PDO::PARAM_STR);
             if($stmt->execute()){

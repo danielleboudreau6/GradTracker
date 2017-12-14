@@ -20,10 +20,7 @@ $dbh = new DbHandler();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-
-    
-    
+<html lang="en">  
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -55,7 +52,7 @@ $dbh = new DbHandler();
             $password = $_POST['password'];
             //Attempt login 
             $data = $dbh->checkLogin($email, $password);
-            var_dump($data);
+            //var_dump($data);
 
             if($data){//true: login success or false: login failed
                 //login success - get the user by email
@@ -65,49 +62,48 @@ $dbh = new DbHandler();
                     $userItems = $data['items'];
                     //var_dump($userItems); 
                     foreach ($userItems as $item) {
-                        $userid = $item['id'];
-                        $firstname = $item['first_name'];
-                        $lastname = $item['last_name'];
-                        $fullname = $firstname . ' ' . $lastname;
-                        $admin = $item['admin'];
+                        $member_id = $item['member_id'];
+                        $first_name = $item['first_name'];
+                        $last_name = $item['last_name'];
+                        $full_name = $first_name . ' ' . $last_name;
+                        $admin = $item['type'];
                     }
                     //store data in session
-                    $_SESSION['user_id'] = $userid;
-                    $_SESSION['fullname'] = $fullname;
-                    $_SESSION['admin'] = $admin;
+                    $_SESSION['member_id'] = $member_id;
+                    $_SESSION['full_name'] = $full_name;
+                    $_SESSION['type'] = $admin;
                 //show success and redirect user to home page (countdown)
                 echo '<div class="alert alert-success">                      
-                      <p><strong>Welcome, '.$fullname.'</strong></p>
-                      <p>You have successfully signed in.  
-                      Thank you for browsing GradTracker.</p>
+                      <p><strong>Welcome, '.$first_name.'! </strong></p>
+                      <p>You have successfully signed in.</p>
                       <a href="index.php">Back to Home</a>
                       </div>';     
             }
             //finish page:  hide form
             echo '</div>
                   </div>';
-            include './includes/footer.php'; //footer
             exit();
             }else{
                //login failed- show message
                 echo '<div class="alert alert-danger"><strong>Login Failed</strong>
                         <p>Invalid credentials entered. Please try again.</p>
+                        <p>If you are not yet a member, please <a href="register.php">Register an Account</a></p>
                       </div>'; 
             }
         }//end of if POST
         ?>
           
-        <form>
+        <form method="post" action="login.php">
             <div class="form-group">
               <label for="exampleInputEmail1">Email address</label>
-              <input class="form-control" name="" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter email">
+              <input class="form-control" name="email" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter email">
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1">Password</label>
-              <input class="form-control" name=""id="exampleInputPassword1" type="password" placeholder="Password">
+              <input class="form-control" name="password" id="exampleInputPassword1" type="password" placeholder="Password">
             </div>
             
-            <button type="submit" name="" class="btn btn-primary btn-block">Login</button>
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
           </form>
           <div class="text-center">
               <br>
