@@ -79,7 +79,7 @@ $dbh = new DbHandler();
             if ($_POST['password1'] == $_POST['password2']) {
                 $password2 = strip_tags($_POST['password2']);
             } else {
-                $reg_errors['password2'] = 'Your password does not match.';
+                $reg_errors['password2'] = 'Your passwords do not match.';
             }
         } else {
             $reg_errors['password1'] = 'Password must be between 6 and 20 characters long, with 
@@ -147,14 +147,14 @@ $dbh = new DbHandler();
                                 <div class="card-body">
                                 <div class="alert alert-success"><strong>Account Registered</strong>
                                 <p>Warning:  There was a problem sending a confirmation email to the following email: <strong>' .
-                    $email . '</strong>.</p> <p>Please contact customer support!</p>                                 
+                    $email . '</strong>.</p> <p>Please contact customer support.</p>                                 
                               </div>';
                 }
                 //================== END SEND EMAIL ===================//
             } else {
                 echo '<div class="alert alert-danger"><strong>Registration Failed</strong>
                         <p>The following error has occured: ' . $data['message'] . '</p>' . 
-                        '<a class="btn btn-primary" href="register.php">Try again</a></p></div>';
+                        '<a href="register.php">Please try again</a></p></div>';
             }
             //finish page:  hide form
             echo '</div>';
@@ -173,68 +173,7 @@ $dbh = new DbHandler();
         }
     }
     ?>
-
-
-
-
-<!--    <form method="post" action="register.php" class="mb-4">
-        <div class="form-group">
-            <div class="form-row">
-                <div class="col-md-6">
-                    <label for="firstname">First name</label>
-                    <input class="form-control" id="firstname" name="firstname"
-                           type="text"  
-                           oninvalid="this.setCustomValidity('Please enter first name')" 
-                           oninput="setCustomValidity('')"
-                           placeholder="Enter first name" required autofocus
-                           value="<?php //if (isset($_POST['firstname'])) echo $_POST['firstname']; ?>">
-                </div>
-                <div class="col-md-6">
-                    <label for="lastname">Last name</label>
-                    <input class="form-control" id="lastname" name="lastname"
-                           type="text"  
-                           oninvalid="this.setCustomValidity('Please enter last name')" 
-                           oninput="setCustomValidity('')"
-                           placeholder="Enter last name" required
-                           value="<?php //if (isset($_POST['lastname'])) echo $_POST['lastname']; ?>">
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="email">Email address</label>
-            <input class="form-control" id="email" name="email"
-                   type="email" oninvalid="this.setCustomValidity('Please enter email')" 
-                   oninput="setCustomValidity('')"                   
-                   placeholder="Enter email" required
-                   value="<?php //if (isset($_POST['email'])) echo $_POST['email']; ?>">
-        </div>
-        <div class="form-group">
-            <div class="form-row">
-                <div class="col-md-6">
-                    <label for="password1">Password</label>
-                    <input class="form-control" id="password1" name="password1"
-                           type="password" 
-                           oninvalid="this.setCustomValidity('Please enter password')" 
-                           oninput="setCustomValidity('')" autocomplete="off"                  
-                           placeholder="Enter password" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="password2">Confirm password</label>
-                    <input class="form-control" id="password2" name="password2"
-                           type="password" 
-                           oninvalid="this.setCustomValidity('Please confirm password')" 
-                           oninput="setCustomValidity('')" autocomplete="off"                 
-                           placeholder="Confirm password" required>
-                </div>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary btn-block">Register</button>
-    </form> 
-    <div class="mt-4">&nbsp;</div>-->
-    
-    
-    
-    
+  
     
 <body class="bg-dark">
   <div class="container">
@@ -276,7 +215,7 @@ $dbh = new DbHandler();
           <button type="submit" class="btn btn-primary btn-block">Register</button>
         </form>
         <div class="text-center">
-          <a class="d-block small mt-3" href="login.html">Login Page</a>
+            <br>
           <a class="d-block small" href="index.php">Back to Home</a>
         </div>
       </div>

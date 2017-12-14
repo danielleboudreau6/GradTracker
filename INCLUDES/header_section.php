@@ -105,7 +105,7 @@ if( !empty($_SESSION['user_id']) ){
         </li>';
 }else{
     echo '<li class="nav-item">
-          <a class="nav-link" href="login.html">
+          <a class="nav-link" href="login.php">
             <i class="fa fa-fw fa-sign-in"></i>Login</a>
         </li>';
 }
