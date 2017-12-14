@@ -46,6 +46,7 @@ $dbh = new DbHandler();
   <meta name="description" content="">
   <meta name="author" content="">
   <title>GradTracker</title>
+  <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet">
   <!-- Bootstrap core CSS-->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->

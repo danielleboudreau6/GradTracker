@@ -39,7 +39,6 @@
                           <th>Name</th>
                           <th>Company</th>
                           <th>Title</th>
-                          <th>LinkedIn</th>
                           <th>Start Date</th>
                         </tr>
                     </thead>
@@ -50,7 +49,6 @@
                                 <td>{$row['Name']}</td>
                                 <td>{$row['Company']}</td>
                                 <td>{$row['Title']}</td>
-                                <td>{$row['LinkedIn']}</td>
                                 <td>{$row['Start Date']}</td>
                               </tr>";
                     
