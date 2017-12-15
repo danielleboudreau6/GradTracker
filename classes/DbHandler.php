@@ -1,3 +1,6 @@
+
+<!-- GRADTRACKER -->
+
 <?php
 
 /* 
@@ -56,12 +59,9 @@ class DbHandler{
     // ---------------------------------------------- DATABASE QUERIES ----------------------------------------------
     
     public function getStudents(){
-        $sql = "select concat(fname, ' ', lname) as Name, gradyear as 'Grad Year', company_name as 'Company', title_name as Title, 
-                      date_format(start_date,'%Y-%m') as 'Start Date'
-                      from grads join employment on grads.grad_id = employment.grad_id
-                      join companies on employment.company_id = companies.company_id
-                      join titles on employment.title_id = titles.title_id
-                      order by gradyear desc, name, start_date desc;";
+        $sql = "select concat(fname, ' ', lname) as 'Name', GradYear as 'Grad Year', linkedin as LinkedIn 
+                from grads
+                order by lname, fname;";
         try{
             $stmt = $this->conn->query($sql);
             $students = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -107,7 +107,7 @@ class DbHandler{
     }//End of getCompanies
     
     public function getEmployment(){
-        $sql="select concat(fname, ' ', lname) as 'Name', companies.company_name as Company, titles.title_name as Title, linkedin as LinkedIn, 
+        $sql="select concat(fname, ' ', lname) as 'Name', companies.company_name as Company, titles.title_name as Title, 
               date_format(start_date,'%Y-%m') as 'Start Date'
               from grads join employment on grads.grad_id = employment.grad_id
               join companies on companies.company_id = employment.company_id
@@ -132,12 +132,37 @@ class DbHandler{
         //Return data back to calling environment
         return $data;
         
-    }//End of getCompanies
+    }//End of getEmployment
+    
+    public function getTitles(){
+        $sql="select title_name as Titles from titles order by 1;";
+        
+        try{
+            $stmt = $this->conn->query($sql);
+            $sql = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            //Create an array to hold success|failure
+            //data|message
+            $data = array('error'=>false,
+                          'items'=>$sql
+                         );
+            
+        } catch (PDOException $ex) {
+            $data = array('error'=>true,
+                          'message'=>$ex->getMessage()
+                         );
+        }//end of try catch
+        
+        //Return data back to calling environment
+        return $data;
+        
+    }//End of getTitles
+    
+    
     
     public function addCompany($company_name,$address,$city,$province_state,$postal,$country_id,$website,$contact_fname,$contact_lname,$contact_phone,$contact_email){
         //First check if company already exists in table
         if(!$this->isCompanyExists($company_name)){
-            //Company does not exist - continue
+            // Company does not exist - continue
 
             // insert a new company to the database
             
@@ -151,7 +176,7 @@ class DbHandler{
             $stmt->bindValue(':city', $city, PDO::PARAM_STR);
             $stmt->bindValue(':province_state', $province_state, PDO::PARAM_STR);
             $stmt->bindValue(':postal', $postal, PDO::PARAM_STR);
-            $stmt->bindValue(':country_id', $country_id, PDO::PARAM_STR);
+            $stmt->bindValue(':country_id', $country_id, PDO::PARAM_INT);
             $stmt->bindValue(':website', $website, PDO::PARAM_STR);
             $stmt->bindValue(':contact_fname', $contact_fname, PDO::PARAM_STR);
             $stmt->bindValue(':contact_lname', $contact_lname, PDO::PARAM_STR);
@@ -208,7 +233,7 @@ class DbHandler{
             $stmt->bindValue(':email', $email, PDO::PARAM_STR);
             $stmt->bindValue(':linkedin', $linkedin, PDO::PARAM_STR);
             $stmt->bindValue(':student_id', $student_id, PDO::PARAM_STR);
-            $stmt->bindValue(':program_id', $program_id, PDO::PARAM_STR);
+            $stmt->bindValue(':program_id', $program_id, PDO::PARAM_INT);
             $stmt->bindValue(':gradyear', $gradyear, PDO::PARAM_STR);
             
             // execute the statement 

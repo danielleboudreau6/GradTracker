@@ -20,7 +20,7 @@
     <div class="container-fluid">
         <div class="row">
         <div class="col-lg-3 mx-auto mb-3">
-            <a class="btn btn-primary btn-block" href="addTitle.php">Add a Title</a>
+            <a class="btn btn-primary btn-block" href="addTitle.php">Add a Job</a>
         </div> 
 <!--            <div class="col-lg-3 mx-auto mb-3">
                <a class="btn btn-primary btn-block" href="editCompany.php">Edit a Company</a> 
@@ -33,7 +33,7 @@
                 
                 if($data['error']==false) {
                     $companies = $data['items'];
-                    echo "<table class='table table-bordered table-striped article-table'>
+                    echo "<table id='article-table' class='table table-bordered table-striped'>
                     <thead class='thead-inverse'>
                         <tr>
                           <th>Name</th>

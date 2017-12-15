@@ -46,6 +46,7 @@ $dbh = new DbHandler();
   <meta name="description" content="">
   <meta name="author" content="">
   <title>GradTracker</title>
+  <!-- DataTables CSS-->
   <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet">
   <!-- Bootstrap core CSS-->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -84,8 +85,8 @@ $dbh = new DbHandler();
         
       <ul class="navbar-nav ml-auto">
          
-          
-        <li class="nav-item">
+      <!-- Here is the search bar and button, commented out now that we have the plugin -->    
+<!--        <li class="nav-item">
           <form class="form-inline my-2 my-lg-0 mr-lg-2">
             <div class="input-group">
               <input class="form-control" type="text" placeholder="Search for...">
@@ -96,7 +97,7 @@ $dbh = new DbHandler();
               </span>
             </div>
           </form>
-        </li>
+        </li>-->
 <?php   
 
 if( !empty($_SESSION['user_id']) ){

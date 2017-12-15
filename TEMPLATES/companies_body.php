@@ -33,7 +33,7 @@
                 
                 if($data['error']==false) {
                     $companies = $data['items'];
-                    echo "<table class='table table-bordered table-striped article-table'>
+                    echo "<table id= 'article-table' class='table table-bordered table-striped'>
                     <thead class='thead-inverse'>
                         <tr>
                           <th>Company</th>
