@@ -49,6 +49,7 @@
         }
 
         ?>
+        <div class="col-lg-6">
             <form name="addTitleForm" id="addTitleForm" novalidate method="post">
                 <div class="control-group form-group">
                     <div class="controls">
@@ -66,7 +67,8 @@
                 <button type="submit" class="btn btn-primary" id="addStudentButton">Add Title</button>
                 
             </form>
-
+        </div>    
         
 
     </div>
+ 

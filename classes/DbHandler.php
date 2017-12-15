@@ -314,7 +314,50 @@ class DbHandler{
         return $data;
     }//End of addTitle
     
-    
+    public function editTitle($title_name){
+        //First check if the title already exists in table
+        if($this->isTitleExists($title_name)){
+            // title exists - continue
+
+            // edit the title name in the database
+            
+            $stmt = $this->conn->prepare("replace into titles (title_name)
+                                          values (:title_name)");
+            // bind parameters
+            $stmt->bindValue(':title_name', $title_name, PDO::PARAM_STR);
+
+            // execute the statement 
+            $result = $stmt->execute();
+            
+            // prepare the array of results
+            if($result) {
+                // success - build success message
+                $data=array(
+                            'error'=>false, 
+                            'message'=>'TITLE_ADD_SUCCESS'
+                           );
+                
+            }
+            else {
+                // fail - build fail message
+                $data=array(
+                            'error'=>true, 
+                            'message'=>'TITLE_ADD_FAIL'
+                           );
+            }
+            
+        }
+        else{
+            // title does not exist - return error and message
+            $data=array('error'=>true,                
+                        'message'=>'TITLE_NOT_FOUND'
+            );
+            
+        }
+        
+        //Return one final data array
+        return $data;
+    }//End of editTitle
     
     
     // ---------------------------------------------- REGISTER USER ----------------------------------------------
