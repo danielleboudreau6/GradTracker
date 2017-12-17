@@ -314,6 +314,65 @@ class DbHandler{
         return $data;
     }//End of addTitle
     
+    public function addEmployment($fname,$lname,$company_name,$title_name,$start_date){
+        //First check if company already exists in table
+        
+        // what do we pass in here? 
+        
+        if(!$this->isEmploymentExists($student_id)){
+            // student does not exist - continue
+
+            // insert a new student to the database
+            
+            $stmt = $this->conn->prepare("insert into employment (fname, lname, email, linkedin, student_id,
+                                          program_id, gradyear)
+                                          values (:fname, :lname, :email, :linkedin, :student_id, :program_id,
+                                          :gradyear)");
+            // bind parameters
+            $stmt->bindValue(':fname', $fname, PDO::PARAM_STR);
+            $stmt->bindValue(':lname', $lname, PDO::PARAM_STR);
+            $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+            $stmt->bindValue(':linkedin', $linkedin, PDO::PARAM_STR);
+            $stmt->bindValue(':student_id', $student_id, PDO::PARAM_STR);
+            $stmt->bindValue(':program_id', $program_id, PDO::PARAM_INT);
+            $stmt->bindValue(':gradyear', $gradyear, PDO::PARAM_STR);
+            
+            // execute the statement 
+            $result = $stmt->execute();
+            
+            // prepare the array of results
+            if($result) {
+                // success - build success message
+                $data=array(
+                            'error'=>false, 
+                            'message'=>'STUDENT_ADD_SUCCESS'
+                           );
+                
+            }
+            else {
+                // fail - build fail message
+                $data=array(
+                            'error'=>true, 
+                            'message'=>'STUDENT_ADD_FAIL'
+                           );
+            }
+            
+        }
+        else{
+            // company already exists - return error and message
+            $data=array('error'=>true,                
+                        'message'=>'STUDENT_ALREADY_EXISTS'
+            );
+            
+        }
+        
+        //Return one final data array
+        return $data;
+    }//End of addEmployment
+    
+    
+    
+    
     public function editTitle($title_name){
         //First check if the title already exists in table
         if($this->isTitleExists($title_name)){
