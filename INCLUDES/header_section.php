@@ -100,7 +100,7 @@ $dbh = new DbHandler();
         </li>-->
 <?php   
 
-if( !empty($_SESSION['user_id']) ){
+if( !empty($_SESSION['member_id']) ){
     echo '<li class="nav-item">
           <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
             <i class="fa fa-fw fa-sign-out"></i>Logout</a>

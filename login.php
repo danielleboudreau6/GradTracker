@@ -43,7 +43,7 @@ $dbh = new DbHandler();
         <div class="card-body">
           
           <?php
-          var_dump($_POST);
+          //var_dump($_POST);
           // && ['active']==NULL
           
             if ($_POST) {

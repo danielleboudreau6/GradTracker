@@ -39,10 +39,11 @@
                             <tbody>";
 
                             foreach($students as $row) {
+                                
                                 echo "<tr>
                                         <td>{$row['Name']}</td>
                                         <td>{$row['Grad Year']}</td>
-                                        <td>{$row['LinkedIn']}</td>
+                                        <td><a href='https://www.{$row['LinkedIn']}' target='_blank'><i class='fa fa-linkedin-square fa-2x' aria-hidden='true'></i></a></td>
                                       </tr>";
                             }
                             echo "</tbody></table>";
@@ -52,3 +53,6 @@
             </div>
         </div>
   </div>
+
+
+<!---->

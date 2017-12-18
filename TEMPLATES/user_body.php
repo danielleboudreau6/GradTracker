@@ -10,7 +10,8 @@
     </div>
       
   
-      
+      <h2>Member Profile</h2>
+        <hr>
       
       
     <div class="container-fluid">
