@@ -27,12 +27,18 @@
             
             $data = $dbh->addEmployment($grad_id, $company_id, $title_id, $start_date);
             if($data['error']==false) {
-                echo '<div class="alert alert-success"><strong>Insert Success</strong>
-                      <p>The job was successfully added.</p></div>';
+                echo '<div class="alert alert-success"><strong>Job Added</strong>
+                                <p>You have successfully added a new job. 
+                                </p>
+                                <a href="addemployment.php">Add Another Job</a>
+                              </div>';
             }
             else {
-                echo '<div class="alert alert-danger"><strong>Insert Failure</strong>
-                      <p>An error has occurred, please try again.</p></div>';
+                echo '<div class="alert alert-danger"><strong>Add a Job Failed</strong>
+                                <p>An error has occurred.
+                                </p>
+                                <a href="addemployment.php">Try Again</a>
+                              </div>';
             }
             // finish the page - hide the form
             echo '</div>';

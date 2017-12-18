@@ -50,13 +50,21 @@
             if($data['error']==false) {
                 // it worked
                 // put in a success box of some kind
-                echo $data['message'];
+                echo '<div class="alert alert-success"><strong>Student Added</strong>
+                                <p>You have successfully added a new student. 
+                                </p>
+                                <a href="addstudent.php">Add Another Student</a>
+                              </div>';
                  
             }
             else {
                 // didn't work
                 // alert box of some kind
-                echo $data['message'];
+                echo '<div class="alert alert-danger"><strong>Add a Student Failed</strong>
+                                <p>An error has occurred.
+                                </p>
+                                <a href="addstudent.php">Try Again</a>
+                              </div>';
             }
             
         }

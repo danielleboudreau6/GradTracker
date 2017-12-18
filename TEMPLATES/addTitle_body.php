@@ -42,13 +42,21 @@
             if($data['error']==false) {
                 // it worked
                 // put in a success box of some kind
-                echo $data['message'];
+                echo '<div class="alert alert-success"><strong>Title Added</strong>
+                                <p>You have successfully added a new title. 
+                                </p>
+                                <a href="addtitle.php">Add Another Title</a>
+                              </div>';
                  
             }
             else {
                 // didn't work
                 // alert box of some kind
-                echo $data['message'];
+                echo '<div class="alert alert-danger"><strong>Add a Title Failed</strong>
+                                <p>An error has occurred.
+                                </p>
+                                <a href="addtitle.php">Try Again</a>
+                              </div>';
             }
             
         }

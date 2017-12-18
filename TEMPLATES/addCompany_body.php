@@ -46,39 +46,52 @@
             $data = $dbh->addCompany($company_name,$address,$city,$province_state,$postal,$country_id,
                                      $website,$contact_fname,$contact_lname,$contact_phone,$contact_email);
 
-            //var_dump($data);
+            var_dump($data);
             
             
             if($data['error']==false) {
                 // it worked
                 // put in a success box of some kind
-                echo $data['message'];
+                echo '<div class="alert alert-success"><strong>Company Added</strong>
+                                <p>You have successfully added a new company. 
+                                </p>
+                                <a href="addcompany.php">Add Another Company</a>
+                              </div>';
                  
             }
             else {
                 // didn't work
                 // alert box of some kind
-                echo $data['message'];
+                echo '<div class="alert alert-danger"><strong>Add a Company Failed</strong>
+                                <p>An error has occurred.
+                                </p>
+                                <a href="addcompany.php">Try Again</a>
+                              </div>';
             }
             
         }
 
         ?>
         
-        <div class="row">
-        <div class="col-lg-6">
+        
+        
+                 
             <form name="addCompanyForm" id="addCompanyForm" novalidate method="post">
+                
+                
+                
                 <div class="control-group form-group">
                     <div class="controls">
-                        
+                            
                         <label for="company_name">Company Name:</label>
                         <input type="text" class="form-control" 
                                name="company_name" id="company_name" 
                                placeholder="Enter the company name"
                                required data-validation-required-message="Enter the company name.">
                         <p class="form-text"></p>
-                    </div>
-                </div>
+                    </div></div>
+                    
+                      
                 <div class="control-group form-group">
                     <div class="controls">
                         <label for="address">Address:</label>
@@ -127,8 +140,9 @@
                         </select>
                     </div>
                 </div>
-                </div>
-        <div class="col-lg-6">
+                
+                    
+        
             <div class="control-group form-group">
                 <div class="controls">
                     <label for="website">Website:</label>
@@ -169,21 +183,15 @@
                            placeholder="Enter the contact's email">
                 </div>
             </div>
-        </div>
-            
-            </form>
-            
-                <div id="success"></div>
-                <div class="container-fluid">
-                <div class="row">
+        
                     <div class="col-lg-12">
                         
+                  <div id="success"></div>      
                 <button type="submit" class="btn btn-block btn-primary" id="addCompanyButton">Add Company</button>
                 
                 <br>
                 </div>
-                </div>
-                    </div>
+</form>
             
 
         </div>
