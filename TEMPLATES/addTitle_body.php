@@ -1,6 +1,9 @@
   <div class="content-wrapper">
     <div class="container-fluid">
         
+         <h2>Add a Title</h2>
+        <hr>
+        
        <ol class="breadcrumb">
         <li class="breadcrumb-item">
           <a href="index.php">Home</a>
@@ -14,8 +17,7 @@
         <!--<li class="breadcrumb-item active">Home</li>-->
        </ol>
         
-        <h2>Add a Title</h2>
-        <hr>
+       
         
     <?php
     
@@ -67,7 +69,8 @@
                 
                 <div id="success"></div>
                 <!-- For success/fail messages -->
-                <button type="submit" class="btn btn-primary" id="addStudentButton">Add Title</button>
+                <button type="submit" class="btn btn-primary btn-block" id="addStudentButton">Add Title</button>
+                <br>
                 
             </form>
         </div>    

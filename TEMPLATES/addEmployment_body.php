@@ -1,6 +1,9 @@
   <div class="content-wrapper">
     <div class="container-fluid">
         
+        <h2>Add a Job</h2>
+        <hr>
+        
        <ol class="breadcrumb">
         <li class="breadcrumb-item">
           <a href="index.php">Home</a>
@@ -119,7 +122,7 @@
         </div>-->
 
         <button type="submit" class="btn btn-primary btn-block">Add Job</button>
-
+        <br>
     </form> 
         </div>
         

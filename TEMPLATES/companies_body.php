@@ -1,6 +1,9 @@
   <div class="content-wrapper">
     <div class="container-fluid">
         
+        <h2>Companies</h2>
+        <hr>
+        
        <ol class="breadcrumb">
         <li class="breadcrumb-item">
           <a href="index.php">Home</a>
@@ -11,8 +14,7 @@
         <!--<li class="breadcrumb-item active">Home</li>-->
        </ol>
         
-       <h2>Companies</h2>
-        <hr>
+       
         
     </div>
   
@@ -21,12 +23,22 @@
       
     <div class="container-fluid">
         <div class="row">
-        <div class="col-lg-3 mx-auto mb-3">
+            
+            <?php
+            
+           if( !empty($_SESSION['member_id']) && $_SESSION['type']=='admin'){
+                
+                echo '<div class="col-lg-3 mx-auto mb-3">
+                        <a class="btn btn-primary btn-block" href="addCompany.php">Add a Company</a>
+                    </div> ';
+           }
+                    
+            ?>
+            
+<!--        <div class="col-lg-3 mx-auto mb-3">
             <a class="btn btn-primary btn-block" href="addCompany.php">Add a Company</a>
-        </div> 
-            <div class="col-lg-3 mx-auto mb-3">
-               <a class="btn btn-primary btn-block" href="editCompany.php">Edit a Company</a> 
-            </div>
+        </div> -->
+            
         <div class="col-lg-12">
             <?php
             

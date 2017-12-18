@@ -7,10 +7,24 @@
         </li>
         
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Report">
-          <a class="nav-link" href="students.php">
-            <i class="fa fa-fw fa-table"></i>
-            <span class="nav-link-text">Report</span>
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
+            <i class="fa fa-fw fa-file-o"></i>
+            <span class="nav-link-text">Reports</span>
           </a>
+            <ul class="sidenav-second-level collapse" id="collapseComponents">
+            <li>
+                <a href="students.php"><i class="fa fa-fw fa-graduation-cap"></i> Students</a>
+            </li>
+            <li>
+                <a href="companies.php"><i class="fa fa-fw fa-building-o"></i> Companies</a>
+            </li>
+            <li>
+              <a href="titles.php"><i class="fa fa-fw fa-id-card-o"></i> Titles</a>
+            </li>
+            <li>
+                <a href="employment.php"><i class="fa fa-fw fa-briefcase"></i> Jobs</a>
+            </li>
+          </ul>
         </li>
         
         

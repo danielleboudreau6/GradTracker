@@ -1,6 +1,9 @@
   <div class="content-wrapper">
     <div class="container-fluid">
         
+        <h2>Add a Company</h2>
+        <hr>
+        
        <ol class="breadcrumb">
         <li class="breadcrumb-item">
           <a href="index.php">Home</a>
@@ -14,8 +17,7 @@
         <!--<li class="breadcrumb-item active">Home</li>-->
        </ol>
         
-        <h2>Add a Company</h2>
-        <hr>
+        
         
     <?php
     
@@ -168,11 +170,21 @@
                 </div>
             </div>
         </div>
-                <div id="success"></div>
-                <!-- For success/fail messages -->
-                <button type="submit" class="btn btn-primary" id="addCompanyButton">Add Company</button>
-                
+            
             </form>
+            
+                <div id="success"></div>
+                <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        
+                <button type="submit" class="btn btn-block btn-primary" id="addCompanyButton">Add Company</button>
+                
+                <br>
+                </div>
+                </div>
+                    </div>
+            
 
         </div>
         
