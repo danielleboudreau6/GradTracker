@@ -20,7 +20,7 @@
     <div class="container-fluid">
         <div class="row">
         <div class="col-lg-3 mx-auto mb-3">
-            <a class="btn btn-primary btn-block" href="addTitle.php">Add a Job</a>
+            <a class="btn btn-primary btn-block" href="addEmployment.php">Add a Job</a>
         </div> 
 <!--            <div class="col-lg-3 mx-auto mb-3">
                <a class="btn btn-primary btn-block" href="editCompany.php">Edit a Company</a> 

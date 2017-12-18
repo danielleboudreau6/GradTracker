@@ -82,6 +82,82 @@ class DbHandler{
         
     }//end of getStudents Method
     
+    public function getGrads() {
+        $sql = "select grad_id, concat(fname, ' ', lname) as Name from grads order by lname";
+        try {
+            $stmt = $this->conn->query($sql);
+            $grads = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            // create an array to hold success or failure
+            // data or message
+            $data = array('error' => false, 'items' => $grads);
+            
+        } catch (PDOException $ex) {
+            $data = array('error' => true, 'message' => $ex->getMessage());
+        } // end of try catch
+        // return data back to calling environment
+        return $data;
+    }
+    
+    public function getPlaces() {
+        $sql = "select company_id, company_name from companies order by company_name";
+        try {
+            $stmt = $this->conn->query($sql);
+            $companies = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            // create an array to hold success or failure
+            // data or message
+            $data2 = array('error' => false, 'items' => $companies);
+            
+        } catch (PDOException $ex) {
+            $data2 = array('error' => true, 'message' => $ex->getMessage());
+        } // end of try catch
+        // return data back to calling environment
+        return $data2;
+    }
+    
+    public function getPositions() {
+        $sql = "select title_id, title_name from titles order by title_name";
+        try {
+            $stmt = $this->conn->query($sql);
+            $titles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            // create an array to hold success or failure
+            // data or message
+            $data3 = array('error' => false, 'items' => $titles);
+            
+        } catch (PDOException $ex) {
+            $data3 = array('error' => true, 'message' => $ex->getMessage());
+        } // end of try catch
+        // return data back to calling environment
+        return $data3;
+    }
+    
+    public function addEmployment($grad_id, $company_id, $title_id, $start_date) {
+        $stmt = $this->conn->prepare("insert into employment (grad_id, company_id, title_id, start_date)
+                                      values (:grad_id, :company_id, :title_id, :start_date)");
+        
+        // bind parameters
+        $stmt->bindValue(':grad_id', $grad_id, PDO::PARAM_INT);
+        $stmt->bindValue(':company_id', $company_id, PDO::PARAM_INT);
+        $stmt->bindValue(':title_id', $title_id, PDO::PARAM_INT);
+        $stmt->bindValue(':start_date', $start_date, PDO::PARAM_STR);
+        
+        // execute the statement
+        $result = $stmt->execute();
+        
+        // prepare an array of results
+        if ($result) {
+            // success - build success message
+            $data = array('error' => false, 'message' =>'JOB_ADD_SUCCESS');
+        }
+        else {
+            // fail - build fail message
+            $data = array('error' => true, 'message' =>'JOB_ADD_FAIL');
+        }
+        return $data;
+    }
+    
+    
+    
+    
     
     public function getCompanies(){
         $sql="SELECT company_name as Company, city as City, website as Website from companies order by 1;";
@@ -314,61 +390,61 @@ class DbHandler{
         return $data;
     }//End of addTitle
     
-    public function addEmployment($fname,$lname,$company_name,$title_name,$start_date){
-        //First check if company already exists in table
-        
-        // what do we pass in here? 
-        
-        if(!$this->isEmploymentExists($student_id)){
-            // student does not exist - continue
-
-            // insert a new student to the database
-            
-            $stmt = $this->conn->prepare("insert into employment (fname, lname, email, linkedin, student_id,
-                                          program_id, gradyear)
-                                          values (:fname, :lname, :email, :linkedin, :student_id, :program_id,
-                                          :gradyear)");
-            // bind parameters
-            $stmt->bindValue(':fname', $fname, PDO::PARAM_STR);
-            $stmt->bindValue(':lname', $lname, PDO::PARAM_STR);
-            $stmt->bindValue(':email', $email, PDO::PARAM_STR);
-            $stmt->bindValue(':linkedin', $linkedin, PDO::PARAM_STR);
-            $stmt->bindValue(':student_id', $student_id, PDO::PARAM_STR);
-            $stmt->bindValue(':program_id', $program_id, PDO::PARAM_INT);
-            $stmt->bindValue(':gradyear', $gradyear, PDO::PARAM_STR);
-            
-            // execute the statement 
-            $result = $stmt->execute();
-            
-            // prepare the array of results
-            if($result) {
-                // success - build success message
-                $data=array(
-                            'error'=>false, 
-                            'message'=>'STUDENT_ADD_SUCCESS'
-                           );
-                
-            }
-            else {
-                // fail - build fail message
-                $data=array(
-                            'error'=>true, 
-                            'message'=>'STUDENT_ADD_FAIL'
-                           );
-            }
-            
-        }
-        else{
-            // company already exists - return error and message
-            $data=array('error'=>true,                
-                        'message'=>'STUDENT_ALREADY_EXISTS'
-            );
-            
-        }
-        
-        //Return one final data array
-        return $data;
-    }//End of addEmployment
+//    public function addEmployment($fname,$lname,$company_name,$title_name,$start_date){
+//        //First check if company already exists in table
+//        
+//        // what do we pass in here? 
+//        
+//        if(!$this->isEmploymentExists($student_id)){
+//            // student does not exist - continue
+//
+//            // insert a new student to the database
+//            
+//            $stmt = $this->conn->prepare("insert into employment (fname, lname, email, linkedin, student_id,
+//                                          program_id, gradyear)
+//                                          values (:fname, :lname, :email, :linkedin, :student_id, :program_id,
+//                                          :gradyear)");
+//            // bind parameters
+//            $stmt->bindValue(':fname', $fname, PDO::PARAM_STR);
+//            $stmt->bindValue(':lname', $lname, PDO::PARAM_STR);
+//            $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+//            $stmt->bindValue(':linkedin', $linkedin, PDO::PARAM_STR);
+//            $stmt->bindValue(':student_id', $student_id, PDO::PARAM_STR);
+//            $stmt->bindValue(':program_id', $program_id, PDO::PARAM_INT);
+//            $stmt->bindValue(':gradyear', $gradyear, PDO::PARAM_STR);
+//            
+//            // execute the statement 
+//            $result = $stmt->execute();
+//            
+//            // prepare the array of results
+//            if($result) {
+//                // success - build success message
+//                $data=array(
+//                            'error'=>false, 
+//                            'message'=>'STUDENT_ADD_SUCCESS'
+//                           );
+//                
+//            }
+//            else {
+//                // fail - build fail message
+//                $data=array(
+//                            'error'=>true, 
+//                            'message'=>'STUDENT_ADD_FAIL'
+//                           );
+//            }
+//            
+//        }
+//        else{
+//            // company already exists - return error and message
+//            $data=array('error'=>true,                
+//                        'message'=>'STUDENT_ALREADY_EXISTS'
+//            );
+//            
+//        }
+//        
+//        //Return one final data array
+//        return $data;
+//    }//End of addEmployment
     
     
     
