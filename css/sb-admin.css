@@ -375,6 +375,13 @@ footer.sticky-footer {
 .bg-warning {
     background-color: #F09733 !important;
 }
+.bg-primary{
+    background-color: #00718F !important;
+}
+
+.bg-danger{
+    background-color: #A71C20 !important;
+}
 
 table {
     overflow-x: auto;

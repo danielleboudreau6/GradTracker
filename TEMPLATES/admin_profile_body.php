@@ -7,9 +7,13 @@
         </li>
         <li class="breadcrumb-item active">Admin</li>
        </ol>
+        
+        <h2>Administrator Profile</h2>
+        <hr>
+        
     </div>
       
-  
+    
       
       
       

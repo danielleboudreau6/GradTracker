@@ -6,6 +6,9 @@
                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                 <li class="breadcrumb-item active">Contact us</li>
             </ol>
+            
+        <h2>Add a Company</h2>
+        <hr>
 
             <head>
                 <meta charset="UTF-8">
@@ -15,8 +18,7 @@
                 </style>
             </head>
             <body>
-                <h2>Contact Us</h2>
-                <hr>
+                
                 <?php
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $reg_errors = array();

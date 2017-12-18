@@ -14,6 +14,9 @@
         <!--<li class="breadcrumb-item active">Home</li>-->
        </ol>
         
+        <h2>Add a Student</h2>
+        <hr>
+        
     <?php
     
         if(isset($_SESSION['member_id'])){
