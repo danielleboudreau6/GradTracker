@@ -32,7 +32,7 @@
               <div class="card-body-icon">
                 <i class="fa fa-fw fa-list"></i>
               </div>
-              <div class="mr-5">GRADS</div>
+              <div class="mr-5">STUDENTS</div>
             </div>
             <a class="card-footer text-white clearfix small z-1" href="students.php">
               <span class="float-left">View our past students</span>
