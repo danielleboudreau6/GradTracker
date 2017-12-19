@@ -46,7 +46,7 @@
             $data = $dbh->addCompany($company_name,$address,$city,$province_state,$postal,$country_id,
                                      $website,$contact_fname,$contact_lname,$contact_phone,$contact_email);
 
-            var_dump($data);
+            //var_dump($data);
             
             
             if($data['error']==false) {

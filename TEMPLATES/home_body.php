@@ -35,7 +35,7 @@
               <div class="mr-5">STUDENTS</div>
             </div>
             <a class="card-footer text-white clearfix small z-1" href="students.php">
-              <span class="float-left">View our past students</span>
+              <span class="float-left">View our past Web and Mobile Development students</span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
               </span>

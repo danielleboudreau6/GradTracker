@@ -22,8 +22,9 @@
             
                 if( !empty($_SESSION['member_id']) && $_SESSION['type']=='admin'){
 
-                     echo '<div class="col-lg-3 mx-auto mb-3">
+                     echo '<div class="col-lg-12">
                              <a class="btn btn-primary btn-block" href="addStudent.php">Add a Student</a>
+                             <br>
                          </div> ';
                 }
                 ?>

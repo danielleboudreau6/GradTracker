@@ -44,7 +44,7 @@
             $data = $dbh->addStudent($fname, $lname, $email, $linkedin, $student_id,
                                      $program_id, $gradyear);
 
-            var_dump($data);
+            //var_dump($data);
             
             
             if($data['error']==false) {
@@ -70,7 +70,7 @@
         }
 
         ?>
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             <form name="addStudentForm" id="addStudentForm" novalidate method="post">
                 <div class="control-group form-group">
                     <div class="controls">

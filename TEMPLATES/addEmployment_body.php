@@ -65,7 +65,7 @@
         //var_dump($data3);
 
         ?>
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             <form method="post" action="addEmployment.php" class="mb-4" novalidate>
         <div class="form-group">
              <label for="grad_id">Student</label>

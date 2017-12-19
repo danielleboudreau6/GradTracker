@@ -62,7 +62,7 @@
         }
 
         ?>
-        <div class="col-lg-6">
+        <div class="col-lg-12">
             <form name="addTitleForm" id="addTitleForm" novalidate method="post">
                 <div class="control-group form-group">
                     <div class="controls">
