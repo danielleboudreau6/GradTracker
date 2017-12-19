@@ -13,6 +13,8 @@
             </li>
             <!--<li class="breadcrumb-item active">Home</li>-->
            </ol>
+        
+        </div>
 
         <!-- Icon Cards-->
         <div class="container-fluid">
@@ -28,7 +30,7 @@
                          </div> ';
                 }
                 ?>
-            </div>
+            
                 
 <!--                <div class="col-lg-3 mx-auto mb-3">
                     <a class="btn btn-primary btn-block" href="addStudent.php">Add a Student</a>
@@ -63,4 +65,4 @@
                 </div>   
             </div>
       </div>
-  </div>
+</div>

@@ -152,7 +152,12 @@ $dbh = new DbHandler();
                 }
                 //================== END SEND EMAIL ===================//
             } else {
-                echo '<div class="alert alert-danger"><strong>Registration Failed</strong>
+                echo '<body class="bg-dark">
+                            <div class="container">
+                              <div class="card card-register mx-auto mt-5">
+                                <div class="card-header">Account Registration</div>
+                                <div class="card-body">
+                                <div class="alert alert-danger"><strong>Registration Failed</strong>
                         <p>The following error has occured: ' . $data['message'] . '</p>' . 
                         '<a href="register.php">Please try again</a></p></div>';
             }
