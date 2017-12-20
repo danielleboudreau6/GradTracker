@@ -13,9 +13,9 @@
             <head>
                 <meta charset="UTF-8">
                 <title>form 2</title>
-                <style>
+<!--                <style>
                     .error{font-weight:bold;color:red;}
-                </style>
+                </style>-->
             </head>
             <body>
                 
@@ -26,24 +26,24 @@
                     if (preg_match('/^[A-Z \'.-]{2,45}$/i', $_POST['name'])) {
                         $name = trim($_POST['name']);
                     } else {
-                        $reg_errors['name'] = 'Please enter your name!';
+                        $reg_errors['name'] = '<div class="alert alert-danger">Please enter your name.</div>';
                     }
 
                     if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                         $email = $_POST['email'];
                     } else {
-                        $reg_errors['email'] = 'please enter a valid email!';
+                        $reg_errors['email'] = '<div class="alert alert-danger">Please enter a valid email.</div>';
                     }
 
                     if (preg_match('/^[A-Z ()!?;\'.-]{2,5000}$/i', $_POST['message'])) {
                         $Message = trim($_POST['message']);
                     } else {
-                        $reg_errors['message'] = 'Please enter your Message!';
+                        $reg_errors['message'] = '<div class="alert alert-danger">Please enter your message.</div>';
                     }
 
                     if (empty($reg_errors)) {
                         //var_dump($_POST);
-                        echo "<p>Thank you for your submission!</p>";
+                        echo "<p>Thank you for your submission.</p>";
                         include './mail/sendmail.php';
                         $mail = new sendMail($email, $name, 'Inquiry from GradTracker', $Message, $Message, 'fakegradtrackers@gmail.com', 'GradTracker', 'danielle_boudreau_6@hotmail.com', 'Danielle Boudreau');
     
@@ -60,9 +60,9 @@
                 
                     } else {
                         //var_dump($reg_errors);
-                        echo"<ul>";
+                        
                         foreach ($reg_errors as $error) {
-                            echo "<li class='error'>$error</li>";
+                            echo $error;
                         }
                     }
                 } else {
@@ -73,16 +73,21 @@
 
                     <div class="form-group">
                         <label class="col-form-label" for="formGroupExampleInput">Name</label>
-                        <input name="name" type="text" class="form-control" id="name" placeholder="Type Name Here">
+                        <input name="name" type="text" class="form-control" id="name" 
+                               value="<?php if(isset($_POST['name'])) echo $_POST['name']; ?>"
+                               placeholder="Type Name Here">
                     </div>
                     <div class="form-group">
                         <label class="col-form-label" for="formGroupExampleInput2">Email</label>
-                        <input name="email" type="text" class="form-control" id="email" placeholder="Type Email Here">
+                        <input name="email" type="text" class="form-control" id="email" 
+                               value="<?php if(isset($_POST['email'])) echo $_POST['email']; ?>"
+                               placeholder="Type Email Here">
                     </div>
                     <div class="form-group">
                         <label class="col-form-label" for="formGroupExampleInput2">Message</label>
 <!--                        <input name="message" type="text" class="form-control" id="message" rows="4" placeholder="Type Your Message Here">-->
-                         <textarea name="message" class="form-control" id="message" cols="40" rows="4"placeholder="Type Your Message Here"></textarea>
+                         <textarea name="message" class="form-control" id="message" 
+                                   cols="40" rows="4" placeholder="Type Your Message Here"></textarea>
                     </div>
                     <hr>
                     <td><input name="submit" type="submit" id="submit" value="Send" class="btn btn-primary btn-block" /></td>
