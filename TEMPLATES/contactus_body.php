@@ -4,10 +4,10 @@
 
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                <li class="breadcrumb-item active">Contact us</li>
+                <li class="breadcrumb-item active">Contact Us</li>
             </ol>
             
-        <h2>Add a Company</h2>
+        <h2>Contact Us</h2>
         <hr>
 
             <head>
