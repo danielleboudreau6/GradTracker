@@ -101,8 +101,12 @@ $dbh = new DbHandler();
 <?php   
 
 if( !empty($_SESSION['member_id']) ){
+//    echo '<li class="nav-item">
+//          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+//            <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+//        </li>';
     echo '<li class="nav-item">
-          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+          <a class="nav-link" href="logout.php">
             <i class="fa fa-fw fa-sign-out"></i>Logout</a>
         </li>';
 }else{

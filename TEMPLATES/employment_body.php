@@ -51,7 +51,7 @@
                 
                 if($data['error']==false) {
                     $companies = $data['items'];
-                    echo "<table id='article-table' class='table table-bordered table-striped'>
+                    echo "<table id='article-table' class='table table-bordered table-striped table-responsive'>
                     <thead class='thead-inverse'>
                         <tr>
                           <th>Name</th>
